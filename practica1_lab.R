@@ -66,6 +66,7 @@ fi <- fibonnaci(400)
 
 tur <- read.table('turistics_oct_2026.csv', header = TRUE, sep = ",")
 summary(tur)
+head(tur)
 
 levels(factor(tur$Categoria))
 levels(factor(tur$Província))
@@ -73,10 +74,10 @@ levels(factor(tur$Província))
 counts <- table(tur$Comarca)
 counts <- sort(counts, decreasing = TRUE)   # biggest first
 
-barplot(counts,las = 2,cex.names = 0.7, main = "Establiments turístics per Comarca", ylim = c(0,20000))
+barplot(counts,las = 2,cex.names = 0.7, main = "Establiments turístics per Comarca", ylim = c(0,20000)) # i dont know how to rotate labels in 45 deg without ggplot
 
-library(ggplot2)
-ggplot(tur, aes(x = Comarca)) + geom_bar() + theme(axis.text.x = element_text(angle = 90, hjust = 1))
+library(ggplot2) # trying to use ggplot2 directly
+ggplot(tur, aes(x = Comarca)) + geom_bar() + theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 # Exercice block 2
 
