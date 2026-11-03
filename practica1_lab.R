@@ -7,7 +7,7 @@ v1 <- seq(from = 1, to = 20)
 tmp <- v1[20]
 v1[20] <- v1[2]
 v1[2] <- tmp
-rm(tmp)
+rm(tmp) # optional
 
 # 1.2 replace NA by the mean
 
@@ -26,7 +26,7 @@ df1[df1$Age>= 21, ]
 
 # 1.5 create attribute adult
 
-df1$Adult <- rep(c(df1$Age >= 21))
+df1$Adult <- rep(c(df1$Age >= 21)) # añado columnas simplemente definiendolas
 
 # 1.6 use apply on rows and columns in dataset
 
@@ -77,11 +77,11 @@ counts <- sort(counts, decreasing = TRUE)   # biggest first
 barplot(counts,las = 2,cex.names = 0.7, main = "Establiments turístics per Comarca", ylim = c(0,20000)) # i dont know how to rotate labels in 45 deg without ggplot
 
 library(ggplot2) # trying to use ggplot2 directly
+
+tur$Comarca <- factor(tur$Comarca, levels = names(counts)) 
 ggplot(tur, aes(x = Comarca)) + geom_bar() + theme(axis.text.x = element_text(angle = 45, hjust = 1))
 
 # Exercice block 2
-
-setwd("/home/daniel/Documents/Master/Data Science/Intro_R_2026")
 
 choices <- read.table('Choices dataset.csv', header = TRUE, sep = ";")
 
@@ -94,5 +94,7 @@ class(choices$CHOICE_ID)
 summary(choices)
 
 tableCon <- table(choices$INFO,choices$MEASURE)
+tableConMarg<- addmargins(tableCon) # add margins to the table
+tableConMarg # print the table with margins
 
 chisq.test(tableCon) # pvalue enano, hay que rechazar la hipotesis que son independientes
