@@ -1,4 +1,8 @@
+# david.aguilera.luzon@upc.edu
+
 # Daniel Fuertes
+# Oscar Moreno
+# Marc Torres
 
 # Sesión 1: Estadística Básica
 
@@ -10,6 +14,13 @@ precios <- c(7.80,12.60,15.96,13.50,8.25,31.29,16.46)
 summary(precios)
 boxplot(precios)
 
+# 2 Como no todo el mundo es experto, la muestra aleatoria representa mejor a la población. La muestra aleatoria es más representativa de la población que la muestra sesgada.
+
+
+# 3
+
+# 4 Teorema central del límite: La media de la muestra se aproxima a la media de la población a medida que aumenta el tamaño de la muestra. La distribución de la media muestral se aproxima a una distribución normal a medida que aumenta el tamaño de la muestra, independientemente de la distribución de la población.
+
 # 5
 
 pisos <- read.table("bcn_pisos.txt", header = TRUE, stringsAsFactors = TRUE)
@@ -19,8 +30,11 @@ summary(pisos)
 anyDuplicated(pisos)       # cuenta los duplicados
 pisos[duplicated(pisos), ] # muestra los duplicados
 pisos <- pisos[!duplicated(pisos), ] # elimina los duplicados
+# porque hay duplicados? pues porque el que toma los datos ha hecho un copy paste para hinchar la base de datos
 
-pisos$Valor <- pisos$Valor / 100 # creo que son céntimos
+
+
+pisos$Valor <- pisos$Valor / 100 # creo que son céntimos. Son pesetas jajaja
 
 #renombrar los levels de la variable Estat
 levels(pisos$Estat) <- c("Muy malo", "Malo", "Normal", "Bueno", "Muy bueno")
@@ -97,7 +111,15 @@ boxplot(pisos$Valor)
 
 # cual es el threshold para considerar un piso como outlier? 99 pctil?
 
+# no, es con lo que hay en el pdf de clase página 27 con la función LOF (Local Outlier Factor) que es un algoritmo de detección de anomalías basado en la densidad. LOF compara la densidad local de un punto con la densidad local de sus vecinos.
+
+library(descTools)
+
+outlier.scores <- LOF(scale(data), k = 5)
+
 quantile(pisos$Valor, probs = 0.99)
+
+
 
 pisos_99 <-pisos[pisos$Valor < quantile(pisos$Valor, probs = 0.99), ]
 
@@ -115,7 +137,7 @@ pisos_99 <- pisos_99[pisos_99$ValSol < quantile(pisos_99$ValSol, probs = 0.99), 
 length(pisos_99$Valor)
 length(pisos$Valor) # me he quitado 96 de 2254 pisos
 
-# 8 Plot Valor vs Superf, correlation and covariance
+# 8 Plot Valor vs Superf, correlation and covariance, dos continuas
 
 ggplot(pisos_99, aes(x = Superf, y = Valor)) +
   geom_point(alpha = 0.5) +
@@ -129,7 +151,7 @@ ggplot(pisos_99, aes(x = Superf, y = Valor)) +
 cov(pisos_99$Valor, pisos_99$Superf) # 1517380 covarianza positiva, más superficie más precio
 cor(pisos_99$Valor, pisos_99$Superf) # 0.859 es bastante correlación, está claro
 
-# 9 Asociación entre Barrio y Valor
+# 9 Asociación entre Barrio y Valor, una categorica y una continua
 
 ggplot(pisos_99, aes(x = Dist, y = Valor)) +
   geom_boxplot() +
@@ -142,7 +164,9 @@ ggplot(pisos_99, aes(x = Dist, y = Valor)) +
     x, big.mark = ".", decimal.mark = ",", scientific = FALSE, trim = TRUE
   ))
 
-# 10 Asociación entre Estado y Valor
+# F de fisher, 
+
+# 10 Asociación entre Estado y Distrito
 
   ggplot(pisos_99, aes(x = Estat, y = Valor)) +
   geom_boxplot() +
@@ -154,3 +178,7 @@ ggplot(pisos_99, aes(x = Dist, y = Valor)) +
   scale_y_continuous(labels = function(x) format(
     x, big.mark = ".", decimal.mark = ",", scientific = FALSE, trim = TRUE
   ))
+
+# Estas dos variables categoricas, se hacen con el chi-squared 
+
+# Hay que hacer un pdf con los resultados de la práctica, con los gráficos.
