@@ -11,8 +11,13 @@
 options(width = 400) # setting para que se me vea mejor la consola
 
 precios <- c(7.80,12.60,15.96,13.50,8.25,31.29,16.46)
-summary(precios)
+summary(precios, digits = 2, )
+sd(precios)
+
 boxplot(precios)
+pdf("images/pr1_estad_boxplot1.pdf")
+boxplot(precios)
+dev.off()
 
 # 2 Como no todo el mundo es experto, la muestra aleatoria representa mejor a la población. La muestra aleatoria es más representativa de la población que la muestra sesgada.
 
