@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2026.11.4)  4 NOV 2026 23:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2026.11.4)  7 NOV 2026 15:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -535,40 +535,72 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 \tcb@temp=\box71
 \tcb@temp=\box72
 \tcb@temp=\box73
+) (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcblistings.code.tex
+Library (tcolorbox): 'tcblistings.code.tex' version '6.4.1'
+(/usr/share/texlive/texmf-dist/tex/latex/listings/listings.sty
+\lst@mode=\count328
+\lst@gtempboxa=\box74
+\lst@token=\toks41
+\lst@length=\count329
+\lst@currlwidth=\dimen286
+\lst@column=\count330
+\lst@pos=\count331
+\lst@lostspace=\dimen287
+\lst@width=\dimen288
+\lst@newlines=\count332
+\lst@lineno=\count333
+\lst@maxwidth=\dimen289
+ (/usr/share/texlive/texmf-dist/tex/latex/listings/lstpatch.sty
+File: lstpatch.sty 2024/09/23 1.10c (Carsten Heinz)
+) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
+File: lstmisc.sty 2024/09/23 1.10c (Carsten Heinz)
+\c@lstnumber=\count334
+\lst@skipnumbers=\count335
+\lst@framebox=\box75
+) (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
+File: listings.cfg 2024/09/23 1.10c listings configuration
+))
+Package: listings 2024/09/23 1.10c (Carsten Heinz)
+ (/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcblistingscore.code.tex
+Library (tcolorbox): 'tcblistingscore.code.tex' version '6.4.1'
+(/usr/share/texlive/texmf-dist/tex/latex/tcolorbox/tcbprocessing.code.tex
+Library (tcolorbox): 'tcbprocessing.code.tex' version '6.4.1'
 )
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 27.
+\c@tcblisting=\count336
+))
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 49.
  (/usr/share/texmf/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count328
-\l__pdf_internal_box=\box74
+\l__color_backend_stack_int=\count337
+\l__pdf_internal_box=\box76
 ) (./practica1_estadistica.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 )
 \openout1 = `practica1_estadistica.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 27.
-LaTeX Font Info:    ... okay on input line 27.
-LaTeX Info: Redefining \. on input line 27.
-LaTeX Info: Redefining \% on input line 27.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 49.
+LaTeX Font Info:    ... okay on input line 49.
+LaTeX Info: Redefining \. on input line 49.
+LaTeX Info: Redefining \% on input line 49.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -606,75 +638,119 @@ LaTeX Info: Redefining \% on input line 27.
 
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count329
-\scratchdimen=\dimen286
-\scratchbox=\box75
-\nofMPsegments=\count330
-\nofMParguments=\count331
-\everyMPshowfont=\toks41
-\MPscratchCnt=\count332
-\MPscratchDim=\dimen287
-\MPnumerator=\count333
-\makeMPintoPDFobject=\count334
-\everyMPtoPDFconversion=\toks42
+\scratchcounter=\count338
+\scratchdimen=\dimen290
+\scratchbox=\box77
+\nofMPsegments=\count339
+\nofMParguments=\count340
+\everyMPshowfont=\toks42
+\MPscratchCnt=\count341
+\MPscratchDim=\dimen291
+\MPnumerator=\count342
+\makeMPintoPDFobject=\count343
+\everyMPtoPDFconversion=\toks43
 ) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
-Package hyperref Info: Link coloring OFF on input line 27.
+Package hyperref Info: Link coloring OFF on input line 49.
  (./practica1_estadistica.out) (./practica1_estadistica.out)
 \@outlinefile=\write4
 \openout4 = `practica1_estadistica.out'.
 
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 30.
+\c@lstlisting=\count344
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 52.
  (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 30.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 52.
  (/usr/share/texmf/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 30.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 52.
  (/usr/share/texmf/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 30.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 52.
  (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 30.
+(Font)              <12> on input line 52.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 30.
+(Font)              <8> on input line 52.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 30.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 30.
+(Font)              <6> on input line 52.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 52.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 30.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 52.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 35.
+(Font)              <10.95> on input line 59.
 <pr1_estad_boxplot1.pdf, id=7, 505.89pt x 505.89pt>
 File: pr1_estad_boxplot1.pdf Graphic file (type pdf)
 <use pr1_estad_boxplot1.pdf>
-Package pdftex.def Info: pr1_estad_boxplot1.pdf  used on input line 46.
-(pdftex.def)             Requested size: 181.18439pt x 181.18622pt.
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 68.
- (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
-File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-)
+Package pdftex.def Info: pr1_estad_boxplot1.pdf  used on input line 68.
+(pdftex.def)             Requested size: 135.89174pt x 135.88966pt.
+
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc} <./pr1_estad_boxplot1.pdf>]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc} <./pr1_estad_boxplot1.pdf>]
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 93.
+ (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
+File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
+)
+\g__tcobox_out_iow=\write5
+\openout5 = `practica1_estadistica.listing'.
 
-[2] (./practica1_estadistica.aux
+ (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
+File: lstlang1.sty 2024/09/23 1.10c listings language file
+) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang2.sty
+File: lstlang2.sty 2024/09/23 1.10c listings language file
+) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang3.sty
+File: lstlang3.sty 2024/09/23 1.10c listings language file
+) (./practica1_estadistica.listing
+LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <9> not available
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1.
+)
+
+[2]
+<pr1_estad_histogramas.pdf, id=59, 505.89pt x 505.89pt>
+File: pr1_estad_histogramas.pdf Graphic file (type pdf)
+<use pr1_estad_histogramas.pdf>
+Package pdftex.def Info: pr1_estad_histogramas.pdf  used on input line 136.
+(pdftex.def)             Requested size: 271.7835pt x 271.78705pt.
+<pr1_estad_barplots.pdf, id=60, 505.89pt x 505.89pt>
+File: pr1_estad_barplots.pdf Graphic file (type pdf)
+<use pr1_estad_barplots.pdf>
+Package pdftex.def Info: pr1_estad_barplots.pdf  used on input line 140.
+(pdftex.def)             Requested size: 317.07614pt x 317.08362pt.
+
+
+[3 <./pr1_estad_histogramas.pdf> <./pr1_estad_barplots.pdf>]
+\openout5 = `practica1_estadistica.listing'.
+
+ (./practica1_estadistica.listing)
+
+[4]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 192.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 192.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <5> on input line 192.
+\openout5 = `practica1_estadistica.listing'.
+
+ (./practica1_estadistica.listing)
+
+[5] (./practica1_estadistica.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 )
@@ -686,18 +762,18 @@ Package rerunfilecheck Info: File `practica1_estadistica.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 24553 strings out of 475116
- 465360 string characters out of 5764601
- 843416 words of memory out of 5000000
- 47162 multiletter control sequences out of 15000+600000
- 585502 words of font info for 63 fonts, out of 8000000 for 9000
+ 27393 strings out of 475116
+ 506329 string characters out of 5764601
+ 1255695 words of memory out of 5000000
+ 49901 multiletter control sequences out of 15000+600000
+ 605423 words of font info for 82 fonts, out of 8000000 for 9000
  40 hyphenation exceptions out of 8191
- 98i,6n,105p,533b,627s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb>
-Output written on practica1_estadistica.pdf (2 pages, 117084 bytes).
+ 98i,11n,105p,557b,2276s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi7.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt9.pfb>
+Output written on practica1_estadistica.pdf (5 pages, 239511 bytes).
 PDF statistics:
- 57 PDF objects out of 1000 (max. 8388607)
- 39 compressed objects within 1 object stream
- 3 named destinations out of 1000 (max. 500000)
- 18 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 176 PDF objects out of 1000 (max. 8388607)
+ 138 compressed objects within 2 object streams
+ 55 named destinations out of 1000 (max. 500000)
+ 28 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -10,6 +10,28 @@
 \usepackage{graphicx}
 \usepackage{hyperref}
 \usepackage{tcolorbox}
+\tcbuselibrary{listings}
+
+\newtcblisting{rcode}{
+    listing only,
+    colback=gray!5,
+    colframe=gray!20,
+    boxrule=0.4pt,
+    sharp corners,
+    listing options={
+        language=R,
+        basicstyle=\ttfamily\footnotesize,
+        breaklines=true,
+        showstringspaces=false,
+        literate=
+            {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'{\i}}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+            {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+            {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`\i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+            {À}{{\`A}}1 {È}{{\`E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+            {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {ç}{{\c c}}1 {Ç}{{\c C}}1
+            {ü}{{\"u}}1 {Ü}{{\"U}}1
+    }
+}
 
 \title{Sesión 1 : Estadística Básica}
 \author{
@@ -32,61 +54,126 @@
 1. Calcular la media, la mediana, la desviación tipo, el primer cuartil, el tercer cuartil, el rango intercuartílico y dibujar el correspondiente boxplot de la muestra de datos.
 \end{tcolorbox}
 
-\[
-p = (7.80,12.60,15.96,13.50,8.25,31.29,16.46)
-\]
+\noindent\begin{minipage}[c]{0.7\textwidth}
 
+\begin{flalign*}
+x = (7.80,\ 12.60,\ 15.96,\ 13.50,\ 8.25,\ 31.29,\ 16.46)\\
+\bar{x} = 25,5 \qquad s = 50,5 \qquad Q_1 = 10,0 \qquad Q_3 = 30,0 \\
+Q_3-Q_1 = 20,0
+\end{flalign*}
 
-% todo: que pueda tener las imagenes en otro directorio 
-% y que el pdf compilado se guarde en otro directorio
-
-
-\begin{figure}[h!]
+\end{minipage}\hfill%
+\begin{minipage}[c]{0.3\textwidth}
     \centering
-    \includegraphics[width=0.4\textwidth]{pr1_estad_boxplot1.pdf}
-\end{figure}
+    \includegraphics[width=\textwidth]{pr1_estad_boxplot1.pdf}
+\end{minipage}
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 2. Justificar que la media de una muestra escogida al azar es un estimador más fiable que la media de una muestra de expertos.
 \end{tcolorbox}
 
-Me pican los cocos
+Como no todo el mundo es experto, la muestra aleatoria es más representativa de la población que la muestra sesgada.
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 3. Suponga la variable aleatoria “tiempo que tardo en ir de mi casa al trabajo” y diferencie factores sistemáticos y factores aleatorios intervinientes en su medición
 \end{tcolorbox}
 
-Me pican los cocos
+Factores sistemáticos como el método de transporte elegido, el tráfico debido a las horas puntas, las paradas que haga en tiendas para comprar. 
+Factores aleatorios como la meteorología, el tráfico por un accidente, los amigos que me encuentre en el camino y me paren para charlar. 
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 4. Cuando podemos asegurar que el mecanismo generador de una variable aleatoria se aproxima a una distribución gaussiana.
 \end{tcolorbox}
 
-Me pican los cocos
+Cuando todos los factores aleatorios son irrelevantes en la misma medida al fenómeno de estudio, es decir, que se cumple el Teorema Central del Límite.
+
+\newpage 
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 5. Efectúe un summary de las variables de \texttt{bcn\_pisos.txt}. Detecte si en el fichero proporcionado hay registros duplicados y elimínelos.
 \end{tcolorbox}
 
-Me pican los cocos
+\begin{rcode}
+> summary(pisos)
+    Valor              Superf            Dorm           Banys      
+ Min.   : 3007368   Min.   : 23.24   Min.   :1.000   Min.   :1.000  
+ 1st Qu.:12025000   1st Qu.: 64.20   1st Qu.:2.000   1st Qu.:1.000  
+ Median :15456000   Median : 78.54   Median :3.000   Median :1.000  
+ Mean   :17823727   Mean   : 83.97   Mean   :2.903   Mean   :1.319  
+ 3rd Qu.:20920248   3rd Qu.: 95.00   3rd Qu.:3.000   3rd Qu.:2.000  
+ Max.   :99662144   Max.   :475.30   Max.   :5.000   Max.   :4.000  
+                                                                    
+      Edat         Estat        Planta               Dist         ValSol      
+ Min.   :  0.00   1_MM:395   Atic  : 255   Eixample    :385   Min.   : 20321  
+ 1st Qu.: 25.00   2_M :692   Bajos : 119   Sant_Marti  :335   1st Qu.:106679  
+ Median : 30.00   3_N :856   Planta:1955   Sants       :329   Median :119965  
+ Mean   : 40.75   4_B :277                 Horta       :252   Mean   :128708  
+ 3rd Qu.: 50.00   5_MB:109                 Nou_Barris  :234   3rd Qu.:146537  
+ Max.   :289.00                            Ciutat_Vella:192   Max.   :365754  
+                                           (Other)     :602                   
+  Tipus      Ascens    ExtInt           Reforma   
+ BLOQ: 282   NO: 920   EXT:1991   REF1A5    :778  
+ MANZ:2047   SI:1409   INT: 338   SINREFORMA:501  
+                                  REF5A10   :378  
+                                  RECIENREF :197  
+                                  REF10-15  :182  
+                                  REF>20    :115  
+                                  (Other)   :178  
+> pisos <- pisos[!duplicated(pisos), ]
+\end{rcode}
+
+Hay duplicados porque el que tomó los datos duplicó registros para hinchar la base de datos.
+
+\newpage
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 6. Represente gráficamente la distribución de cada variable del fichero: histograma o función de densidad para las variables continuas o diagrama de barras para las variables categóricas.
 \end{tcolorbox}
 
-me
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width = 0.6\linewidth]{pr1_estad_histogramas.pdf}
+\end{figure}
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width = 0.7\linewidth]{pr1_estad_barplots.pdf}
+\end{figure}
+
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 7. Identifique si existe algún piso que podemos considerar “outlier” (para ello solo tenga en cuenta las variables continuas). Elimínelo del data frame
 \end{tcolorbox}
 
-pican
+Usamos la función \textit{Local Outlier Factor} de la librería \textit{DescTools} con $k = 5$ sobre las variables contínuas del dataframe pisos.
+\begin{rcode}
+> outliers.scores <- LOF(scale(pisos_cont), k = 5)
+> outlier <- order(outlier.scores, decreasing=T)[1:10]
+> cbind(outlier.scores[outliers], pisos_cont[outliers,])
+     outlier.scores[outliers]    Valor Superf Edat    ValSol
+163                  9.731024  3283200  60.00  198  80107.40
+112                  5.966654 80126080 475.30  289 166465.75
+162                  2.972040  8450000  65.00  150 100036.25
+1787                 2.646105  6908846  86.63   10  20320.85
+409                  2.590744 67587904 182.67   60 345825.40
+1732                 2.450899 23520000 168.00   35  66821.50
+116                  2.383793  7321600  51.20  150  80107.40
+1995                 2.306762  7170080  87.44   35  26963.80
+1139                 2.287689 38354208 103.66   50 292681.80
+1987                 2.265198  6300000  63.00   53  46892.65
+
+\end{rcode}
+Viendo estos valores, descartamos los tres primeros, donde podemos ver que su edad es muy elevada, o edad y valor para lo que se esperaría de un piso pequeño. Quizás se trate de pisos históricos con alto valor cultural.
+
+
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 8. Efectúe un diagrama bivariante (plot) entre el “Valor de los pisos” y su “Superficie”. Calcule la covariancia y la correlación entre ambas variables.
 \end{tcolorbox}
 
 los
+
+\newpage
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 9. Calcule la asociación entre el “Valor de los pisos” y el “Distrito”.
@@ -98,5 +185,39 @@ cocos
 10. Calcule la asociación entre el “Distrito” y el “Estado de la vivienda”.
 \end{tcolorbox}
 
-!
+
+\begin{table*}[h]
+    \centering
+    \small
+    \begin{tabular}{lrrrrrr}
+        
+        Distrito & Muy malo & Malo & Normal & Bueno & Muy bueno & $N_j\ (f_j)$ \\
+        \midrule
+        Ciutat Vella & 73 & 52 & 45 & 9 & 6 & 185 (0.08) \\
+        Eixample & 76 & 119 & 119 & 35 & 18 & 367 (0.16) \\
+        Gràcia & 36 & 49 & 49 & 23 & 5 & 162 (0.07) \\
+        Horta & 24 & 68 & 110 & 34 & 13 & 249 (0.11) \\
+        Les Corts & 4 & 26 & 36 & 11 & 6 & 83 (0.04) \\
+        Nou Barris & 29 & 77 & 94 & 17 & 6 & 223 (0.10) \\
+        Sant Andreu & 19 & 53 & 84 & 19 & 10 & 185 (0.08) \\
+        Sant Martí & 45 & 89 & 119 & 55 & 17 & 325 (0.14) \\
+        Sants & 42 & 95 & 121 & 41 & 20 & 319 (0.14) \\
+        Sarrià & 19 & 51 & 56 & 22 & 5 & 153 (0.07) \\
+        \midrule
+        $N_i\ (f_i)$ & 367 (0.16) & 679 (0.30) & 833 (0.37) & 266 (0.12) & 106 (0.05) & 2251 (1.00) \\
+        
+    \end{tabular}
+\end{table*}
+
+\begin{rcode}
+ > chisq.test(pisos_so$Dist, pisos_so$Estat)
+
+        Pearson's Chi-squared test
+
+data:  pisos_so$Dist and pisos_so$Estat
+X-squared = 149.05, df = 36, p-value = 1.054e-15
+\end{rcode}
+
+El p-value es muy pequeño, por lo que tenemos que rechazar la hipótesis nula y aceptar que el estado de la vivienda y el distrito tienen una relación estadísticamente significativa.
 \end{document}
+
