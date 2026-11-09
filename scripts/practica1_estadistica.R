@@ -13,6 +13,7 @@ options(width = 400) # setting para que se me vea mejor la consola
 precios <- c(7.80,12.60,15.96,13.50,8.25,31.29,16.46)
 summary(precios, digits = 2, )
 sd(precios)
+mean(precios)
 
 boxplot(precios)
 pdf("../images/pr1_estad_boxplot1.pdf", width = 2, height = 4)
@@ -126,7 +127,7 @@ pisos_cont <- pisos[, c("Valor", "Superf", "Edat", "ValSol")] # me quedo solo co
 outlier.scores <- LOF(scale(pisos_cont), k = 5) # aplicamos Local Outlier Factor
 
 boxplot(outlier.scores) # vemos que dos estan claramente separados, y un tercero
-outliers <- order(outlier.scores, decreasing=T)[1:3] # selecciono el top 3
+outliers <- order(outlier.scores, decreasing=T)[1:2] # selecciono el top 2
 cbind(outlier.scores[outliers],pisos_cont[outliers,]) # info sonbre los outliers
 
 outliers.scores <- LOF(scale(pisos_cont), k = 5)
@@ -159,20 +160,16 @@ plot(pisos_cont_so$Superf, pisos_so$Valor/1000000,
 #abline(lm(Valor ~ Superf, data = pisos_so), col = "blue", lwd = 2)
 
 dev.off()
-s_pisos_cont_so <- scale(pisos_cont_so)
 
-cov(pisos_cont_so$Valor, pisos_cont_so$Superf) 
 # 269375175 covarianza positiva, más superficie más precio
 
-cov(s_pisos_cont_so$Valor, s_pisos_cont_so$Superf) 
-
+cov(pisos_cont_so$Valor, pisos_cont_so$Superf) 
 cor(pisos_cont_so$Valor, pisos_cont_so$Superf) 
 # 0.8845801 es una correlación bastante cercana a 1
 
-cor(s_pisos_cont_so$Valor, s_pisos_cont_so$Superf) 
-
 # 9 Asociación entre Barrio y Valor, una categorica y una continua, F de Fisher
 
+pdf("../images/pr1_boxplot2.pdf", width = 14, height = 7)
 boxplot(Valor/1000000 ~ Dist, data = pisos_so,
         main = "Precio según barrio",
         xlab = NULL,
@@ -180,10 +177,12 @@ boxplot(Valor/1000000 ~ Dist, data = pisos_so,
         las = 2,
         cex.axis = 0.7
         )
-
+dev.off()
 # F de fisher
 
-oneway.test(pisos_so$Valor~pisos_so$Dist,var.equal=T)
+oneway.test(pisos_so$Valor ~ pisos_so$Dist, var.equal = TRUE) 
+
+# ANOVA de un factor: prueba F de Fisher-Snedecor
 
 # p-value sale muy muy pequeño. Hay que rechazar hipótesis nula y aceptar que el barrio si inluye en el precio
 

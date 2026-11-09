@@ -52,20 +52,20 @@
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 1. Calcular la media, la mediana, la desviación tipo, el primer cuartil, el tercer cuartil, el rango intercuartílico y dibujar el correspondiente boxplot de la muestra de datos.
+\[ x = (7,80,\ 8,25,\ 12,60,\ 13,50,\ 15,96,\ 16,46,\ 31,29) \]
 \end{tcolorbox}
 
 \noindent\begin{minipage}[c]{0.7\textwidth}
-
-\begin{flalign*}
-x = (7.80,\ 12.60,\ 15.96,\ 13.50,\ 8.25,\ 31.29,\ 16.46)\\
-\bar{x} = 25,5 \qquad s = 50,5 \qquad Q_1 = 10,0 \qquad Q_3 = 30,0 \\
-Q_3-Q_1 = 20,0
-\end{flalign*}
+\begin{align*}
+&\bar{x}=\frac{1}{7}\sum_{i=1}^{7}x_i=15,12\ ; \qquad s=\sqrt{\frac{1}{6}\sum_{i=1}^{7}(x_i-\bar{x})^2}=7,89\\
+&x_{(4)}=13,50\ ; \qquad Q_1=x_{(2)}=8,25 \ ;\qquad Q_3=x_{(6)}=16,46\\
+&\mathrm{RIC}=Q_3-Q_1=8,21
+\end{align*}
 
 \end{minipage}\hfill%
-\begin{minipage}[c]{0.3\textwidth}
+\begin{minipage}[c]{0.2\textwidth}
     \centering
-    \includegraphics[width=\textwidth]{pr1_estad_boxplot1.pdf}
+    \includegraphics[width=\textwidth,height=5cm,keepaspectratio]{pr1_estad_boxplot1.pdf}
 \end{minipage}
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
@@ -163,23 +163,47 @@ Usamos la función \textit{Local Outlier Factor} de la librería \textit{DescToo
 1987                 2.265198  6300000  63.00   53  46892.65
 
 \end{rcode}
-Viendo estos valores, descartamos los tres primeros, donde podemos ver que su edad es muy elevada, o edad y valor para lo que se esperaría de un piso pequeño. Quizás se trate de pisos históricos con alto valor cultural.
-
+Viendo estos valores, descartamos los dos primeros, donde podemos ver que su edad es muy elevada, o edad y valor para lo que se esperaría de un piso pequeño. Quizás se trate de pisos históricos con alto valor cultural.
 
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 8. Efectúe un diagrama bivariante (plot) entre el “Valor de los pisos” y su “Superficie”. Calcule la covariancia y la correlación entre ambas variables.
 \end{tcolorbox}
 
-los
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width = 0.8\linewidth]{pr1_scaterplot1.pdf}
+\end{figure}
+
+\begin{rcode}
+> cov(pisos_cont_so$Valor, pisos_cont_so$Superf) 
+[1] 269332201
+> cor(pisos_cont_so$Valor, pisos_cont_so$Superf)
+[1] 0.884583
+\end{rcode}
+
+Con una covarianza positiva, podemos decir que según incrementa la superfície, incrementa el valor. Con una correlación cercana a 1, decimos que existe una asociación estadística significativa entre ambas variables.
 
 \newpage
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 9. Calcule la asociación entre el “Valor de los pisos” y el “Distrito”.
 \end{tcolorbox}
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width = \linewidth]{pr1_boxplot2.pdf}
+\end{figure}
+Al ser una variable categórica y otra contínua, el test que hay que hacer para determinar la independencia de las variables es la F de \textit{Fisher}.
+\begin{rcode}
+> oneway.test(pisos_so$Valor ~ pisos_so$Dist, var.equal = TRUE)
 
-cocos
+        One-way analysis of means
+
+data:  pisos_so$Valor and pisos_so$Dist
+F = 121.97, num df = 9, denom df = 2242, p-value < 2.2e-16
+\end{rcode}
+
+Con el \textit{p-value} tan pequeño, hay que descartar la hipótesis nula y aceptar que el distrito y el valor de los pisos está relacionado.
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 10. Calcule la asociación entre el “Distrito” y el “Estado de la vivienda”.
@@ -193,7 +217,7 @@ cocos
         
         Distrito & Muy malo & Malo & Normal & Bueno & Muy bueno & $N_j\ (f_j)$ \\
         \midrule
-        Ciutat Vella & 73 & 52 & 45 & 9 & 6 & 185 (0.08) \\
+        Ciutat Vella & 74 & 52 & 45 & 9 & 6 & 186 (0.08) \\
         Eixample & 76 & 119 & 119 & 35 & 18 & 367 (0.16) \\
         Gràcia & 36 & 49 & 49 & 23 & 5 & 162 (0.07) \\
         Horta & 24 & 68 & 110 & 34 & 13 & 249 (0.11) \\
@@ -204,7 +228,7 @@ cocos
         Sants & 42 & 95 & 121 & 41 & 20 & 319 (0.14) \\
         Sarrià & 19 & 51 & 56 & 22 & 5 & 153 (0.07) \\
         \midrule
-        $N_i\ (f_i)$ & 367 (0.16) & 679 (0.30) & 833 (0.37) & 266 (0.12) & 106 (0.05) & 2251 (1.00) \\
+        $N_i\ (f_i)$ & 368 (0.16) & 679 (0.30) & 833 (0.37) & 266 (0.12) & 106 (0.05) & 2251 (1.00) \\
         
     \end{tabular}
 \end{table*}
@@ -215,7 +239,7 @@ cocos
         Pearson's Chi-squared test
 
 data:  pisos_so$Dist and pisos_so$Estat
-X-squared = 149.05, df = 36, p-value = 1.054e-15
+X-squared = 151.29, df = 36, p-value = 4.407e-16
 \end{rcode}
 
 El p-value es muy pequeño, por lo que tenemos que rechazar la hipótesis nula y aceptar que el estado de la vivienda y el distrito tienen una relación estadísticamente significativa.

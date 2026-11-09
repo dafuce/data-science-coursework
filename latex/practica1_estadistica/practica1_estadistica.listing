@@ -3,4 +3,4 @@
         Pearson's Chi-squared test
 
 data:  pisos_so$Dist and pisos_so$Estat
-X-squared = 149.05, df = 36, p-value = 1.054e-15
+X-squared = 151.29, df = 36, p-value = 4.407e-16
