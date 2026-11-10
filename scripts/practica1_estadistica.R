@@ -167,6 +167,8 @@ cov(pisos_cont_so$Valor, pisos_cont_so$Superf)
 cor(pisos_cont_so$Valor, pisos_cont_so$Superf) 
 # 0.8845801 es una correlación bastante cercana a 1
 
+
+
 # 9 Asociación entre Barrio y Valor, una categorica y una continua, F de Fisher
 
 pdf("../images/pr1_boxplot2.pdf", width = 14, height = 7)
@@ -185,6 +187,8 @@ oneway.test(pisos_so$Valor ~ pisos_so$Dist, var.equal = TRUE)
 # ANOVA de un factor: prueba F de Fisher-Snedecor
 
 # p-value sale muy muy pequeño. Hay que rechazar hipótesis nula y aceptar que el barrio si inluye en el precio
+
+
 
 # 10 Asociación entre Estado y Distrito, dos categóricas, chi-squared
 

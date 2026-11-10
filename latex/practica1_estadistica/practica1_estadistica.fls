@@ -372,6 +372,8 @@ INPUT ./pr1_boxplot2.pdf
 INPUT ./pr1_boxplot2.pdf
 INPUT ./pr1_boxplot2.pdf
 INPUT ./pr1_boxplot2.pdf
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmr8.tfm
+INPUT /usr/share/texmf/fonts/tfm/public/lm/ec-lmr6.tfm
 OUTPUT practica1_estadistica.listing
 INPUT ./practica1_estadistica.listing
 INPUT ./practica1_estadistica.listing

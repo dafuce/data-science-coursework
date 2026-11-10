@@ -72,20 +72,20 @@
 2. Justificar que la media de una muestra escogida al azar es un estimador más fiable que la media de una muestra de expertos.
 \end{tcolorbox}
 
-Como no todo el mundo es experto, la muestra aleatoria es más representativa de la población que la muestra sesgada.
+No todo el mundo (la población sobre la cual se quiere hacer inferencia) es experto en el sujeto de estudio, por eso la muestra aleatoria es más representativa que una muestra sesgada.
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 3. Suponga la variable aleatoria “tiempo que tardo en ir de mi casa al trabajo” y diferencie factores sistemáticos y factores aleatorios intervinientes en su medición
 \end{tcolorbox}
 
-Factores sistemáticos como el método de transporte elegido, el tráfico debido a las horas puntas, las paradas que haga en tiendas para comprar. 
-Factores aleatorios como la meteorología, el tráfico por un accidente, los amigos que me encuentre en el camino y me paren para charlar. 
+Un factor sistemático es aquel que desplaza de forma regular el tiempo observado. Por ejemplo, si viajo en autobús, salgo a la hora punta, y empiezo el cronómetro en la puerta, el tiempo suele ser mayor que si viajara en coche, fuera de madrugada y empezara a contar en el portal.
+Los aleatorios cambian de un trayecto a otro y su efecto no se conoce de antemano como por ejemplo, los retrasos derivados de la meteorología, una variación del tráfico por un accidente o encontrarse con alguien que detenga el viaje. En distintas mediciones pueden aumentar o reducir el tiempo.
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 4. Cuando podemos asegurar que el mecanismo generador de una variable aleatoria se aproxima a una distribución gaussiana.
 \end{tcolorbox}
 
-Cuando todos los factores aleatorios son irrelevantes en la misma medida al fenómeno de estudio, es decir, que se cumple el Teorema Central del Límite.
+Cuando una variable es la suma de muchos efectos aleatorios independientes, con varianzas finitas e igualmente irrelevantes para explicar la misma, su distribución tiende a aproximarse a una distribución normal, por el Teorema Central del Límite.
 
 \newpage 
 
@@ -194,6 +194,13 @@ Con una covarianza positiva, podemos decir que según incrementa la superfície,
  \includegraphics[width = \linewidth]{pr1_boxplot2.pdf}
 \end{figure}
 Al ser una variable categórica y otra contínua, el test que hay que hacer para determinar la independencia de las variables es la F de \textit{Fisher}.
+\begin{equation*}
+    \begin{cases}
+        H_0 : \text{Valor y Dist son independientes} \\
+        H_1 : \text{Valor y Dist no son independientes}
+    \end{cases}
+\end{equation*}
+
 \begin{rcode}
 > oneway.test(pisos_so$Valor ~ pisos_so$Dist, var.equal = TRUE)
 
@@ -203,7 +210,10 @@ data:  pisos_so$Valor and pisos_so$Dist
 F = 121.97, num df = 9, denom df = 2242, p-value < 2.2e-16
 \end{rcode}
 
-Con el \textit{p-value} tan pequeño, hay que descartar la hipótesis nula y aceptar que el distrito y el valor de los pisos está relacionado.
+Con el \textit{p-value} tan pequeño, hay que descartar la hipótesis nula $H_0$
+y aceptar que el distrito y el valor de los pisos están relacionados.
+
+\newpage
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 10. Calcule la asociación entre el “Distrito” y el “Estado de la vivienda”.
@@ -233,6 +243,13 @@ Con el \textit{p-value} tan pequeño, hay que descartar la hipótesis nula y ace
     \end{tabular}
 \end{table*}
 
+Con una variable categórica nominal y una categórica ordinal, hemos visto la tabla de contingencia, vamos a aplicar el test estadístico sobre las hipótesis
+\begin{equation*}
+    \begin{cases}
+        H_0 : \text{Dist y Estat son independientes} \\
+        H_1 : \text{Dist y Estat no son independientes}
+    \end{cases}
+\end{equation*}
 \begin{rcode}
  > chisq.test(pisos_so$Dist, pisos_so$Estat)
 

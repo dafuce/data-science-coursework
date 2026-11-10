@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1794242974.32378 "/home/daniel/Documents/Master/Data Science/data-science-coursework/latex/practica1_estadistica/practica1_estadistica.tex" "practica1_estadistica.pdf" "practica1_estadistica" 1794242974.96755 0
+["pdflatex"] 1794252432.58451 "/home/daniel/Documents/Master/Data Science/data-science-coursework/latex/practica1_estadistica/practica1_estadistica.tex" "practica1_estadistica.pdf" "practica1_estadistica" 1794252433.20922 0
   "/etc/texmf/web2c/texmf.cnf" 1793827977.40718 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/daniel/Documents/Master/Data Science/data-science-coursework/latex/practica1_estadistica/practica1_estadistica.tex" 1794242974.0693 10352 5bb2c3b83f9656494bfb5d86ec462c49 ""
+  "/home/daniel/Documents/Master/Data Science/data-science-coursework/latex/practica1_estadistica/practica1_estadistica.tex" 1794252432.41647 11350 9fbf7605d536f24171cc4a318104846f ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1095.tfm" 1136768653 3584 929cdff2b7a8c11bd4d49fd68cb0ae70 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -158,6 +158,8 @@
   "/usr/share/texmf/fonts/tfm/public/lm/ec-lmr10.tfm" 1254269338 12056 7e13df7fe4cbce21b072ba7c4f4deb6e ""
   "/usr/share/texmf/fonts/tfm/public/lm/ec-lmr12.tfm" 1254269338 12092 7b1546e2d096cfd5dcbd4049b0b1ec2e ""
   "/usr/share/texmf/fonts/tfm/public/lm/ec-lmr17.tfm" 1254269338 12156 ca1ae6a3c8564e89597f1f993fba1608 ""
+  "/usr/share/texmf/fonts/tfm/public/lm/ec-lmr6.tfm" 1254269338 12048 c1068d0f4772be9b0ec447692e1d6d82 ""
+  "/usr/share/texmf/fonts/tfm/public/lm/ec-lmr8.tfm" 1254269338 12064 a35db870f0b76c338d749c56dc030ef5 ""
   "/usr/share/texmf/fonts/tfm/public/lm/ec-lmri10.tfm" 1254269338 17148 9556e1b5f936b77a796f68d2d559ba99 ""
   "/usr/share/texmf/fonts/tfm/public/lm/ec-lmtk10.tfm" 1254269338 1368 5bfeb1cf8f9f0acdb7436bfaa8e0da4e ""
   "/usr/share/texmf/fonts/tfm/public/lm/ec-lmtt10.tfm" 1254269338 1372 2ef2c2b492b3c4cd7879fe083abbb061 ""
@@ -208,10 +210,10 @@
   "pr1_estad_boxplot1.pdf" 1794062737.29904 4378 643957db4ccf8915d1803427dbc562dd ""
   "pr1_estad_histogramas.pdf" 1794049948.66142 5992 0ed4ff127b0e43c8bfb95d21410c66dc ""
   "pr1_scaterplot1.pdf" 1794062730.86978 258515 e88303f46b56f9a90205ee570bc65233 ""
-  "practica1_estadistica.aux" 1794242974.90853 362 117562da6a1e80eb6fb5d27362787089 "pdflatex"
-  "practica1_estadistica.listing" 1794242974.89508 171 f37db028e830e14b1f58f6f9eaff9638 "pdflatex"
-  "practica1_estadistica.out" 1794242974.76122 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "practica1_estadistica.tex" 1794242974.0693 10352 5bb2c3b83f9656494bfb5d86ec462c49 ""
+  "practica1_estadistica.aux" 1794252433.15246 362 117562da6a1e80eb6fb5d27362787089 "pdflatex"
+  "practica1_estadistica.listing" 1794252433.14201 171 f37db028e830e14b1f58f6f9eaff9638 "pdflatex"
+  "practica1_estadistica.out" 1794252433.00974 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "practica1_estadistica.tex" 1794252432.41647 11350 9fbf7605d536f24171cc4a318104846f ""
   (generated)
   "practica1_estadistica.aux"
   "practica1_estadistica.listing"

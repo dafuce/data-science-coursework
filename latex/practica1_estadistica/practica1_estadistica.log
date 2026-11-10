@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2026.11.4)  9 NOV 2026 17:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2026.11.4)  9 NOV 2026 20:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -756,17 +756,17 @@ Package pdftex.def Info: pr1_boxplot2.pdf  used on input line 194.
 \openout5 = `practica1_estadistica.listing'.
 
  (./practica1_estadistica.listing)
+
+[5 <./pr1_boxplot2.pdf>]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 216.
+(Font)              <10> on input line 227.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 216.
+(Font)              <7> on input line 227.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 216.
+(Font)              <5> on input line 227.
 \openout5 = `practica1_estadistica.listing'.
 
  (./practica1_estadistica.listing)
-
-[5 <./pr1_boxplot2.pdf>]
 
 [6] (./practica1_estadistica.aux
 LaTeX Info: Redefining \. on input line 11.
@@ -780,15 +780,15 @@ Package rerunfilecheck Info: File `practica1_estadistica.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 27447 strings out of 475116
- 507345 string characters out of 5764601
+ 27453 strings out of 475116
+ 507437 string characters out of 5764601
  1255769 words of memory out of 5000000
- 49937 multiletter control sequences out of 15000+600000
- 605423 words of font info for 82 fonts, out of 8000000 for 9000
+ 49941 multiletter control sequences out of 15000+600000
+ 611403 words of font info for 84 fonts, out of 8000000 for 9000
  40 hyphenation exceptions out of 8191
  98i,12n,105p,557b,2276s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi7.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt9.pfb>
-Output written on practica1_estadistica.pdf (6 pages, 518810 bytes).
+Output written on practica1_estadistica.pdf (6 pages, 520982 bytes).
 PDF statistics:
  223 PDF objects out of 1000 (max. 8388607)
  176 compressed objects within 2 object streams
