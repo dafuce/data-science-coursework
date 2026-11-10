@@ -72,22 +72,25 @@
 2. Justificar que la media de una muestra escogida al azar es un estimador más fiable que la media de una muestra de expertos.
 \end{tcolorbox}
 
-No todo el mundo (la población sobre la cual se quiere hacer inferencia) es experto en el sujeto de estudio, por eso la muestra aleatoria es más representativa que una muestra sesgada.
+No todo el mundo (la población sobre la cual se quiere hacer inferencia) es experto en el sujeto de estudio, sea el que sea. Por eso la muestra aleatoria es más representativa que una muestra escogida a dedo. De hecho, el hecho de escoger un subconjunto en base a un criterio se conoce como sesgar la muestra, lo cual es opuesto a un estimador fiable.
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 3. Suponga la variable aleatoria “tiempo que tardo en ir de mi casa al trabajo” y diferencie factores sistemáticos y factores aleatorios intervinientes en su medición
 \end{tcolorbox}
+Sea $T$ el tiempo, una observación es
+\begin{equation*}
+    t_i = \mu + \varepsilon_i
+\end{equation*}
+donde $\mu$ es el factor sistemático, aquel predecible y que desplaza de forma regular el tiempo observado. Por ejemplo, si viajo en autobús, salgo a la hora punta, y empiezo el cronómetro en la puerta, el tiempo suele ser mayor que si viajara en coche, fuera de madrugada y empezara a contar en el portal.
+Los aleatorios $\epsilon_i$ cambian de un trayecto a otro y su efecto no se puede conocer de antemano, como por ejemplo, los retrasos derivados de la meteorología, una variación del tráfico por un accidente o encontrarse con alguien que detenga el viaje. En distintas mediciones pueden aumentar o reducir el tiempo.
 
-Un factor sistemático es aquel que desplaza de forma regular el tiempo observado. Por ejemplo, si viajo en autobús, salgo a la hora punta, y empiezo el cronómetro en la puerta, el tiempo suele ser mayor que si viajara en coche, fuera de madrugada y empezara a contar en el portal.
-Los aleatorios cambian de un trayecto a otro y su efecto no se conoce de antemano como por ejemplo, los retrasos derivados de la meteorología, una variación del tráfico por un accidente o encontrarse con alguien que detenga el viaje. En distintas mediciones pueden aumentar o reducir el tiempo.
+\newpage
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 4. Cuando podemos asegurar que el mecanismo generador de una variable aleatoria se aproxima a una distribución gaussiana.
 \end{tcolorbox}
 
-Cuando una variable es la suma de muchos efectos aleatorios independientes, con varianzas finitas e igualmente irrelevantes para explicar la misma, su distribución tiende a aproximarse a una distribución normal, por el Teorema Central del Límite.
-
-\newpage 
+Cuando una variable es la suma de muchos efectos aleatorios independientes $\varepsilon_i$ , con varianzas finitas e igualmente irrelevantes para explicar la misma. En este caso, su distribución tiende a aproximarse a una distribución normal, por el Teorema Central del Límite.
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 5. Efectúe un summary de las variables de \texttt{bcn\_pisos.txt}. Detecte si en el fichero proporcionado hay registros duplicados y elimínelos.
@@ -122,7 +125,7 @@ Cuando una variable es la suma de muchos efectos aleatorios independientes, con 
 > pisos <- pisos[!duplicated(pisos), ]
 \end{rcode}
 
-Hay duplicados porque el que tomó los datos duplicó registros para hinchar la base de datos.
+Hemos sabido que hay duplicados porque el que tomó los datos duplicó registros para hinchar la base de datos.
 
 \newpage
 
@@ -163,7 +166,7 @@ Usamos la función \textit{Local Outlier Factor} de la librería \textit{DescToo
 1987                 2.265198  6300000  63.00   53  46892.65
 
 \end{rcode}
-Viendo estos valores, descartamos los dos primeros, donde podemos ver que su edad es muy elevada, o edad y valor para lo que se esperaría de un piso pequeño. Quizás se trate de pisos históricos con alto valor cultural.
+Viendo estos valores de \textit{scores}, descartamos los dos primeros, donde podemos ver que su edad es muy elevada, o edad y valor para lo que se esperaría de un piso pequeño. Quizás se trate de pisos históricos con alto valor cultural.
 
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]

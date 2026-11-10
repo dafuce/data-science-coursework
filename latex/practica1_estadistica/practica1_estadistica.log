@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2026.11.4)  10 NOV 2026 11:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2026.11.4)  10 NOV 2026 19:06
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -703,7 +703,7 @@ Package pdftex.def Info: pr1_estad_boxplot1.pdf  used on input line 68.
 [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc} <./pr1_estad_boxplot1.pdf>]
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 93.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 96.
  (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -725,12 +725,12 @@ LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <9> not available
 <pr1_estad_histogramas.pdf, id=61, 505.89pt x 505.89pt>
 File: pr1_estad_histogramas.pdf Graphic file (type pdf)
 <use pr1_estad_histogramas.pdf>
-Package pdftex.def Info: pr1_estad_histogramas.pdf  used on input line 136.
+Package pdftex.def Info: pr1_estad_histogramas.pdf  used on input line 139.
 (pdftex.def)             Requested size: 271.7835pt x 271.78705pt.
 <pr1_estad_barplots.pdf, id=62, 505.89pt x 505.89pt>
 File: pr1_estad_barplots.pdf Graphic file (type pdf)
 <use pr1_estad_barplots.pdf>
-Package pdftex.def Info: pr1_estad_barplots.pdf  used on input line 140.
+Package pdftex.def Info: pr1_estad_barplots.pdf  used on input line 143.
 (pdftex.def)             Requested size: 317.07614pt x 317.08362pt.
 
 
@@ -741,7 +741,7 @@ Package pdftex.def Info: pr1_estad_barplots.pdf  used on input line 140.
 <pr1_scaterplot1.pdf, id=79, 1011.78pt x 505.89pt>
 File: pr1_scaterplot1.pdf Graphic file (type pdf)
 <use pr1_scaterplot1.pdf>
-Package pdftex.def Info: pr1_scaterplot1.pdf  used on input line 175.
+Package pdftex.def Info: pr1_scaterplot1.pdf  used on input line 178.
 (pdftex.def)             Requested size: 362.37569pt x 181.18622pt.
 \openout5 = `practica1_estadistica.listing'.
 
@@ -751,7 +751,7 @@ Package pdftex.def Info: pr1_scaterplot1.pdf  used on input line 175.
 <pr1_boxplot2.pdf, id=115, 1011.78pt x 505.89pt>
 File: pr1_boxplot2.pdf Graphic file (type pdf)
 <use pr1_boxplot2.pdf>
-Package pdftex.def Info: pr1_boxplot2.pdf  used on input line 194.
+Package pdftex.def Info: pr1_boxplot2.pdf  used on input line 197.
 (pdftex.def)             Requested size: 452.9679pt x 226.48277pt.
 \openout5 = `practica1_estadistica.listing'.
 
@@ -759,11 +759,11 @@ Package pdftex.def Info: pr1_boxplot2.pdf  used on input line 194.
 
 [5 <./pr1_boxplot2.pdf>]
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 226.
+(Font)              <10> on input line 229.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 226.
+(Font)              <7> on input line 229.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 226.
+(Font)              <5> on input line 229.
 \openout5 = `practica1_estadistica.listing'.
 
  (./practica1_estadistica.listing)
@@ -782,13 +782,13 @@ Package rerunfilecheck Info: File `practica1_estadistica.out' has not changed.
 Here is how much of TeX's memory you used:
  27453 strings out of 475116
  507437 string characters out of 5764601
- 1255769 words of memory out of 5000000
+ 1258425 words of memory out of 5000000
  49941 multiletter control sequences out of 15000+600000
  611403 words of font info for 84 fonts, out of 8000000 for 9000
  40 hyphenation exceptions out of 8191
  98i,12n,105p,557b,2276s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi7.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt9.pfb>
-Output written on practica1_estadistica.pdf (6 pages, 520870 bytes).
+Output written on practica1_estadistica.pdf (6 pages, 522609 bytes).
 PDF statistics:
  223 PDF objects out of 1000 (max. 8388607)
  176 compressed objects within 2 object streams
