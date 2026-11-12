@@ -69,22 +69,61 @@ suficientemente grande y con un nombre de repeticiones $i$ también grande, toma
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 3. Un amigo me ofrece un piso por valor de 8MPts. Dejando de lado todos los otros factores intervinientes en la decisión de compra de un piso y solo teniendo en cuenta su precio, puedo considerar que
 se trata de una buena ocasión para comprar? Qué suposiciones necesito hacer para resolver el problema?
+Utilizar los datos proporcionados.
 \end{tcolorbox}
+
+Hay que suponer que la muestra tenemos ha sido obtenida de forma aleatoria, independiente, que con las 221 observaciones ya estimamos la población total de pisos a la venta, y la distribución de referencia es la que resulta de dibujar estos precios en una gráfica.
+\\
+Sólo hay 5 pisos con valor de 8MPtas. o inferior, entonces tenemos que el $p-value = 5/221 = 0,023$ y en efecto, es un piso barato con 95\% de confianza, deberíamos comprarlo. 
+
+
+\newpage
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 4. Sabemos que la media de los precios de los pisos (de 3 habitaciones) en l'Eixample es de $\mu = 16,81$ y su desviación tipo es de $\sigma = 5,91$. Suponiendo que la muestra obtenida
 en el ejercicio anterior es aleatoria, ¿ podemos asegurar de que se trata de una muestra de pisos de l'Eixample?
 \end{tcolorbox}
 
+\[ x = (7.80\ 8.25\ 12.60\ 13.50\ 15.96\ 16.46\ 31.29)\ , \quad \bar{x} = 15.12\ , \quad n = 7
+\]
+Supongamos que si que hemos obtenido la muestra del eixample de forma independiente y que la distribución de referencia es normal. En estas condiciones vamos a representar la media observada 
+\begin{equation*}
+    \overline{x}_n \sim N\Big(\mu, \frac{\sigma^2}{n}\Big) = N(16,810 , 4,99)
+\end{equation*}
+
+\begin{figure*}
+    %\includegraphics[]{}
+\end{figure*}
+
+El p-value da 0,22 que es bastante grande, entonces decimos que obtener una muestra como $x$ de los pisos del eixample es posible.
+
 
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 5. El siguiente año, los precios de una muestra aleatoria de pisos de 3hab. en l'Eixample han sido 
 \[
-y = (13,57 \, 14,80 \, 22,36 \, 22,70 \, 29,29)
+y = (13.57 \ 14.80 \ 22.36 \ 22.70 \ 29.29)
 \]
 ¿ Puedo afirmar que no ha habido cambio de precio entre los dos años?
 \end{tcolorbox}
+
+\[\bar{y} = 20,54 \ , \quad n = 5\]
+
+Planteamos el test estadístico
+
+\begin{equation*}
+    \begin{cases}
+        H_0 : \mu_y - \mu = 0 \\
+        H_1 : \mu_y - \mu > 0
+    \end{cases}
+\end{equation*}
+En este caso tenemos que ver la probabilidad de obtener $20,54$ o un valor superior en una muestra de 5 elementos.
+\begin{figure*}
+    % \includegraphics[]{}
+\end{figure*}
+El p-value nos da $0.078$ por tanto con una confianza del 95\% no podemos decir que el precio haya subido. Con obtener esta media muestral de una muestra de 7 pisos, entonces sí podriamos afirmarlo.
+
+\newpage
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 6. Calcular el p valor en la misma prueba del problema anterior, usando el método de permutaciones.
@@ -99,15 +138,68 @@ que ha habido un incremento en la probabilidad de compra por internet?
 
 Comparación de proporciones, muestral vs proporcion poblacional 
 
-\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
-8. Por otro lado, en el mismo mes de la pregunta anterior se ha lanzado una campaña de márqueting directo con un target preseleccionado de 1000 clientes potenciales, obteneiendo una respuesta positiva, esto es la compra del producto, en 56 casos. ¿ Podemos 
-afirmar que la tasa de respuesta obtenida en el target preseleecionado es mejor que la obtenida por internet?
+\begin{equation*}
+p_{T} = 0,02 \ ; \quad n = 2300 \ ; \quad \hat{p} = \frac{94}{2300} = 0,041 \ ;
+\qquad
+    \begin{cases}
+        H_0 : \hat{p} - p_T \leq 0 \\
+        H_1 : \hat{p} - p_T > 0
+    \end{cases}
+\end{equation*}
+Como $p_T$ es una proporción poblacional, la distribución de la observada es 
+\begin{equation*}
+    \hat{p} \sim N \bigg(p_T, \frac{p_T\cdot(1-p_T)}{n}\bigg) =N\bigg(0.02, \frac{0.02 \cdot (0.98)}{2300}\bigg) = N(0,02 , 8,52 \cdot 10^{-6})
+\end{equation*}
+\begin{equation*}
+    z = \frac{\hat{p}- p_T}{\sqrt{\frac{p_T \cdot (1-p_T)}{n}}} = \frac{0,02}{\sqrt{8,52 \cdot 10 ^{-6}}} = 7,15
+\end{equation*}
+\begin{rcode}
+    > pnorm(z_value, lower.tail = FALSE)
+    [1] 4.368528e-13
+\end{rcode}
 
+Con este p-valor tan pequeño, tenemos que rechazar la hipótesis nula $H_0$ y concluimos que si ha habido un incremento de la probabilidad.
+
+\newpage
+
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+8. Por otro lado, en el mismo mes de la pregunta anterior se ha lanzado una campaña de márqueting directo con un target preseleccionado de 1000 clientes potenciales, con la compra del producto en 56 casos. ¿ Podemos 
+afirmar que la tasa de respuesta obtenida en el target preseleecionado es mejor que la obtenida por internet?
 \end{tcolorbox}
 
-
-Comparación de proporciones, muestral vs muestral
-
+\begin{equation*}
+    p_1 = 0,041 \ ; \quad  n_1 = 2300 \ ; \quad p_2 = 56 / 1000 = 0,056 \ ; \quad n_2 = 1000
+\end{equation*}
+Suponemos que las muestras de clientes online $x_1$ y la de los preseleccionados $x_2$ son independientes. Planteamos las hipótesis 
+\begin{equation*}
+    \begin{cases}
+        H_0 : p_2 - p_1 \leq 0 \\
+        H_1 : p_2 - p_1 > 0
+    \end{cases}
+\end{equation*}
+Como ambas proporciones siguen distribuciones binomiales, su diferencia también:
+\begin{equation*}
+    \hat{p_2} - \hat{p_1} \sim N \bigg(p_2 - p_1, \frac{p_2 \cdot (1 - p_2)}{n_2} + \frac{p_1 \cdot (1 - p_1)}{n_1}\bigg)
+    = N(0,015, 6.99 \cdot 10 ^{-5})
+\end{equation*}
+Si suponemos que $H_0$ es cierta, tenemos que el $z-value$ es 
+\begin{equation*}
+    z = \frac{\hat{p}_2 - \hat{p}_1}{\sqrt{\frac{\hat{p}_2 (1 - \hat{p}_2)}{n_2}+ \frac{\hat{p}_1(1-\hat{p}_1)}{n_1}}} \sim N(0,1)
+\end{equation*}
+\begin{rcode}
+    > z12 <- (p2-p1)/ sqrt(v1 + v2)
+    > z12
+    [1] 1.809633
+\end{rcode}
+Representamos esta distribución normal estándard con el $z-value$ obtenido
+\begin{figure*}
+    %\includegraphics*[keyvals]{imagefile}
+\end{figure*}
+\begin{rcode}
+    > pnorm(z12, lower.tail = FALSE)
+    [1] 0.03517633
+\end{rcode}
+Con este p-value podemos decir con 95\% de confianza que las proporción de venta a los preseleccionados es mayor que a los online de forma estadísticamente significativa.
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 9. Un día me encuentro con un amigo al que hace tiempo que no veía, va acompañado por un hijo varón. Me dice pero que tiene dos hijos, cual es la probabilidad de que su otro hijo sea también varón ?
 \end{tcolorbox}

@@ -1,0 +1,2 @@
+    > pnorm(z12, lower.tail = FALSE)
+    [1] 0.03517633
