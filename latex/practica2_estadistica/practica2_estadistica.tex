@@ -1,0 +1,126 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[spanish]{babel}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\tcbuselibrary{listings}
+
+\newtcblisting{rcode}{
+    listing only,
+    colback=gray!5,
+    colframe=gray!20,
+    boxrule=0.4pt,
+    sharp corners,
+    listing options={
+        language=R,
+        basicstyle=\ttfamily\footnotesize,
+        breaklines=true,
+        showstringspaces=false,
+        literate=
+            {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'{\i}}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+            {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+            {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`\i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+            {À}{{\`A}}1 {È}{{\`E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+            {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {ç}{{\c c}}1 {Ç}{{\c C}}1
+            {ü}{{\"u}}1 {Ü}{{\"U}}1
+    }
+}
+
+\title{Sesión 2 : Inferencia Estadística}
+\author{
+    Daniel Fuertes\\
+    %\texttt{student1@example.com}
+    \and
+    Oscar Moreno\\
+    %\texttt{student2@example.com}
+    \and
+    Marc Torres\\
+    %\texttt{student3@example.com}
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+1. Enumere cuales son los elementos clave de una prueba de hipótesis y su significado.
+\end{tcolorbox}
+
+La hipótesis alternativa que es la que se quiere probar dada un conocimiento previo o una pregunta sobre el tema, la hipótesis nula que es el complementario de la alternativa, 
+el estadístico de la prueba que es el que se estimará a partir de la distribución de referencia que es aquella que le asignaremos al problema dada la muestra.
+También el p-value como espacio de probabilidad y el z-value como umbral del estadístico para determinar si nuestra observación es improbable en la hipótesis nula, nos servirá para rechazarla o aceptarla.
+
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+2. Un elemento clave en toda prueba de hipótesis es la distribución de referencia del estadístico de la prueba. Diga de que maneras podemos conocer (o aproximar) la distribución de referencia para la prueba de hipótesis de querer ver si una media de una muestra
+es igual o no a un cierto valor nominal. Especifique como obtendría o cual sería esta distribución de referencia.
+\end{tcolorbox}
+
+Dada una muestra de $n$ observaciones, cogeremos $i$ veces muestras de $m$ observaciones con $m<n$ y calcularemos la media muestral $\overline{X}_{m_i}$ de todas ellas. Representadas en un dotline, veremos una distribución de medias la cual si tomamos con un valor $m$ 
+suficientemente grande y con un nombre de repeticiones $i$ también grande, tomará forma simétrica y normal con una función de distribución parecida a $N(\mu,\frac{\sigma}{m})$
+
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+3. Un amigo me ofrece un piso por valor de 8MPts. Dejando de lado todos los otros factores intervinientes en la decisión de compra de un piso y solo teniendo en cuenta su precio, puedo considerar que
+se trata de una buena ocasión para comprar? Qué suposiciones necesito hacer para resolver el problema?
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+4. Sabemos que la media de los precios de los pisos (de 3 habitaciones) en l'Eixample es de $\mu = 16,81$ y su desviación tipo es de $\sigma = 5,91$. Suponiendo que la muestra obtenida
+en el ejercicio anterior es aleatoria, ¿ podemos asegurar de que se trata de una muestra de pisos de l'Eixample?
+\end{tcolorbox}
+
+
+
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+5. El siguiente año, los precios de una muestra aleatoria de pisos de 3hab. en l'Eixample han sido 
+\[
+y = (13,57 \, 14,80 \, 22,36 \, 22,70 \, 29,29)
+\]
+¿ Puedo afirmar que no ha habido cambio de precio entre los dos años?
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+6. Calcular el p valor en la misma prueba del problema anterior, usando el método de permutaciones.
+\end{tcolorbox}
+
+
+
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+7. Sabemos que la probabilidad de compra de un producto en el canal internet es de 0,02. En un mes se han conectado 2300 visitantes, de los cuales 94 han comprado nuestro producto, ¿ puedo pensar
+que ha habido un incremento en la probabilidad de compra por internet?
+\end{tcolorbox}
+
+Comparación de proporciones, muestral vs proporcion poblacional 
+
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+8. Por otro lado, en el mismo mes de la pregunta anterior se ha lanzado una campaña de márqueting directo con un target preseleccionado de 1000 clientes potenciales, obteneiendo una respuesta positiva, esto es la compra del producto, en 56 casos. ¿ Podemos 
+afirmar que la tasa de respuesta obtenida en el target preseleecionado es mejor que la obtenida por internet?
+
+\end{tcolorbox}
+
+
+Comparación de proporciones, muestral vs muestral
+
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+9. Un día me encuentro con un amigo al que hace tiempo que no veía, va acompañado por un hijo varón. Me dice pero que tiene dos hijos, cual es la probabilidad de que su otro hijo sea también varón ?
+\end{tcolorbox}
+
+La mitad, ya que el sexo de los hijos es una variable binomial independiente entre si. La probabilidad de ambos varones sería de un cuarto si no hubieses visto que por lo menos uno lo es. 
+
+
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+10. En un concurso de televisión había 3 puertas a escoger, sólo detrás de una de ellas había un premio. El concursante escogía una y luego se revelaba una de las otras dos, una que no tenía el premio.
+¿ Cuál es la mejor opción para el concursante, mantenerse en su primera opción o cambiar de puerta?
+\end{tcolorbox}
+
+Si es mejor cambiarse, porque la probabilidad de premio en la primera elección es $1/3$ y las otras dos puertas es $2/3$. Cuando se revela que una de ellas no es, la probabilidad de $2/3$ se concentra en la puerta no abierta y no escogida inicialmente.
+
+\end{document}
+
