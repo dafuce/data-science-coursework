@@ -12,7 +12,7 @@ square <- function(x)(x^2)
 
 5 |> square() |> sqrt()
 
-square_and_root <- . %>% square() %>% sqrt() # el . es una referencia a un valor numerico
+square_and_root <- . %>% square() %>% sqrt() # el . es una referencia a un valor numerico en este caso
 
 square_and_root(5)
 
@@ -64,6 +64,7 @@ str(pisos)
 # a 
 
 dim(pisos)
+
 pisos[!duplicated(pisos),] |> (\(x){dim(x)})()
 
 pisos[!duplicated(pisos),] |> (\(x){aggregate(Valor ~ Dist, data = x, FUN = mean)})()
@@ -74,7 +75,6 @@ valor_mean_by_dist <- function(df) {aggregate(Valor ~ Dist, data = df, FUN = mea
 pisos %>% remove_duplicates() %>% valor_mean_by_dist()
 
 # b
-
 
 # str(pisos) # Valor, Superf, Dorm, Banys, Edat, ValSol ( Dorm i Banys como categorico?)
 
@@ -88,11 +88,9 @@ pisos %>% remove_duplicates() %>% keep_numerics() %>% scale()
 
 # c 
 
-
 # usamos una lista para poderle pasar el df y los aggregates al siguiente paso de la pipeline
 
 pisos[!duplicated(pisos),] |> (\(df) list(df = df,aggregates = aggregate(Valor ~ Dist, data = df, FUN = mean)))() 
-
 
 pisos[!duplicated(pisos),] |> (\(df) list(df = df,aggregates = aggregate(Valor ~ Dist, data = df, FUN = mean)))() |> (\(x) {
 	x$df$Greater_than_its_mean <- factor(
@@ -192,7 +190,6 @@ distinfo
 distinfosql
 
 # A pintar !!!
-
 
 stacked_prop <- function(df, columns) {
 	counts <- as.matrix(df[, columns, drop = FALSE])

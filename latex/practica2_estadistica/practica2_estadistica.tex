@@ -3,7 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
-\usepackage[spanish]{babel}
+\usepackage[spanish,es-nodecimaldot]{babel}
 \usepackage[margin=0.75in]{geometry}
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs}
@@ -53,18 +53,25 @@
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 1. Enumere cuales son los elementos clave de una prueba de hipótesis y su significado.
 \end{tcolorbox}
-
-La hipótesis alternativa que es la que se quiere probar dada un conocimiento previo o una pregunta sobre el tema, la hipótesis nula que es el complementario de la alternativa, 
-el estadístico de la prueba que es el que se estimará a partir de la distribución de referencia que es aquella que le asignaremos al problema dada la muestra.
-También el p-value como espacio de probabilidad y el z-value como umbral del estadístico para determinar si nuestra observación es improbable en la hipótesis nula, nos servirá para rechazarla o aceptarla.
-
+\begin{itemize}
+    \item Hipótesis nula ($H_0$): Es la hipótesis que se asume verdadera hasta que se demuestre lo contrario.
+    \item Hipótesis alternativa ($H_1$): Es la hipótesis que se quiere probar.
+    \item Estadístico de la prueba: Es la cantidad calculada a partir de la muestra que se compara con la distribución de referencia.
+    \item Distribución de referencia: Es la distribución que se espera que siga el estadístico bajo la hipótesis nula.
+    \item Valor p ($p$-value): Es la probabilidad de obtener un valor del estadístico al menos tan extremo como el observado, bajo la hipótesis nula.
+    \item Valor crítico ($z$-value): Es el umbral que determina si se rechaza o no la hipótesis nula. Va directamente relacionado con el nivel de significancia ($\alpha$) y define el área de rechazo de la prueba.
+\end{itemize}
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 2. Un elemento clave en toda prueba de hipótesis es la distribución de referencia del estadístico de la prueba. Diga de que maneras podemos conocer (o aproximar) la distribución de referencia para la prueba de hipótesis de querer ver si una media de una muestra
 es igual o no a un cierto valor nominal. Especifique como obtendría o cual sería esta distribución de referencia.
 \end{tcolorbox}
 
-Dada una muestra de $n$ observaciones, cogeremos $i$ veces muestras de $m$ observaciones con $m<n$ y calcularemos la media muestral $\overline{X}_{m_i}$ de todas ellas. Representadas en un dotline, veremos una distribución de medias la cual si tomamos con un valor $m$ 
-suficientemente grande y con un nombre de repeticiones $i$ también grande, tomará forma simétrica y normal con una función de distribución parecida a $N(\mu,\frac{\sigma}{m})$
+Si las observaciones son independientes y la muestra es suficientemente grande, el teorema central del límite permite aproximar la distribución de la 
+media muestral por una normal. La varianza poblacional se estima con la varianza muestral $s^2$ en el supuesto de hipótesis nula $\mu = \mu_0$ y, si la población es normal, el estadístico $t=(\overline{X}-\mu_0)/(s/\sqrt{n})$ sigue una distribución $t$ de Student con $n-1$ grados de libertad. \newline
+Para muestras grandes, la distribución de la media muestral puede aproximarse por una normal centrada en $\mu_0$, usando la varianza estimada a partir de los datos.
+
+También podemos aproximar empíricamente la distribución de la media mediante remuestreo: seleccionamos muchas muestras de tamaño $n$, con reemplazo, a partir de las observaciones disponibles y calculamos la media de cada una. 
+La distribución de esas medias aproxima la distribución muestral. En la hipótesis nula, esta distribución se centraría en $\mu_0$. La varianza de la media muestral se estima a partir de la variabilidad observada en los datos.
 
 \newpage
 
@@ -74,64 +81,86 @@ Utilizar los datos proporcionados.
 \end{tcolorbox}
 
 \noindent
-\begin{minipage}[t]{0.49\textwidth}
-\vspace{0pt}
 Hay que suponer que la muestra tenemos ha sido obtenida de forma aleatoria, independiente, que con las 221 observaciones ya estimamos la población total de pisos a la venta, y la distribución de referencia es la que resulta de dibujar estos precios en una gráfica.
 Sólo hay 5 pisos con valor de 8MPtas. o inferior, entonces el $p-value = 5/221 = 0,023$ por lo que es un piso barato con 95\% de confianza, deberíamos comprarlo.
-\end{minipage}\hfill
-\begin{minipage}[t]{0.49\textwidth}
-\vspace{0pt}
- \centering
- \includegraphics[width=\linewidth]{pr2_histprecios.pdf}
-\end{minipage}
+\begin{figure}[h!]
+    \centering
+    \includegraphics[width=0.9\textwidth]{pr2_histprecios.pdf}
+\end{figure}
+
+\newpage
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
-4. Sabemos que la media de los precios de los pisos en l'Eixample es de $\mu = 16,81$ y su desviación tipo es de $\sigma = 5,91$. Suponiendo que la muestra obtenida
+4. Sabemos que la media de los precios de los pisos en l'Eixample es de $\mu = 16.81$ y su desviación tipo es de $\sigma = 5.91$. Suponiendo que la muestra obtenida
 en el ejercicio anterior es aleatoria, ¿podemos asegurar de que es una muestra de pisos de l'Eixample?
 
 \end{tcolorbox}
-\[ x = (7.80\ 8.25\ 12.60\ 13.50\ 15.96\ 16.46\ 31.29)\ , \quad \bar{x} = 15.12\ , \quad n = 7
+\[ x = (7.80,8.25, 12.60, 13.50, 15.96, 16.46, 31.29)\ , \quad \bar{x} = 15.12\ , \quad n = 7
 \]
-Supongamos que las observaciones de la muestra son independiente y que la distribución de referencia es normal. En estas condiciones, la media observada sigue 
+Supongamos que las observaciones de la muestra son independiente y que la distribución de referencia es normal. Las hipótesis que se plantean son:
 \begin{equation*}
-    \overline{x}_n \sim N\Big(\mu, \frac{\sigma^2}{n}\Big) = N(16,810 , 4,99)
+    \begin{cases}
+        H_0 : \mu_X = \mu \\
+        H_1 : \mu_X \neq \mu
+    \end{cases}
 \end{equation*}
 
+Pese a que la muestra lleva a pensar que se trata de un test unilateral, para que sea correcto debemos plantearlo como bilateral.
+En la hipótesis nula, la media observada sigue la siguiente distribución
+\begin{equation*}
+    \overline{X}_n \sim N\Big(\mu, \frac{\sigma^2}{n}\Big) = N(16.810 , 4.99)
+\end{equation*}
 \begin{figure}[h!]
  \centering
  \includegraphics[width = 0.6\linewidth]{pr2_normdist1.pdf}
 \end{figure}
 
-El p-value da 0,22 que es bastante grande, entonces decimos que obtener una muestra como $x$ de los pisos del eixample es posible.
+
+Calculamos el valor de $z$ y el $p-value$ con $R$:
+\begin{equation*}
+    z = \frac{\bar{x} - \mu}{\sigma / \sqrt{n}} = \frac{15.12 - 16.81}{5.91 / \sqrt{7}} \approx -0.757
+\end{equation*}
+
+El p-value da 0.45 que es muy grande, entonces decimos que obtener una muestra como $x$ de los pisos del eixample es posible.
 
 \newpage
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
-5. El siguiente año, los precios de una muestra aleatoria de pisos en l'Eixample han sido 
+5. El siguiente año, los precios de una muestra aleatoria de pisos en l'Eixample para el año $n$ han sido 
 \[
-y = (13.57 \ 14.80 \ 22.36 \ 22.70 \ 29.29)
+y = (13.57, 14.80, 22.36, 22.70, 29.29)
 \]
 ¿ Puedo afirmar que no ha habido cambio de precio entre los dos años?
 \end{tcolorbox}
 
-\[\bar{y} = 20,54 \ , \quad n = 5\]
+\[\bar{y} = 20.54 \ , \quad n = 5\]
 
 Planteamos el test estadístico
 
 \begin{equation*}
     \begin{cases}
-        H_0 : \mu_y - \mu = 0 \\
-        H_1 : \mu_y - \mu > 0
+        H_0 : \mu_y = 16.81  \\
+        H_1 : \mu_y \neq 16.81 
     \end{cases}
 \end{equation*}
-En este caso tenemos que ver la probabilidad de obtener $20,54$ o un valor superior en una muestra de 5 elementos.
+Como en el ejercicio anterior, $\mu = 16.81$ y $\sigma = 5.91$ son los parámetros poblacionales de l'Eixample, bajo la hipótesis nula $H_0$ la media muestral sigue una normal:
+\begin{equation*}
+    \overline{y}_n \sim N\Big(\mu, \frac{\sigma^2}{5}\Big)
+\end{equation*}
+En este caso tenemos que ver la probabilidad de obtener $20.54$ o un valor superior en una muestra de 5 elementos.
 
 \begin{figure}[h!]
  \centering
  \includegraphics[width = 0.7\linewidth]{pr2_normdist2.pdf}
 \end{figure}
 
-El p-value nos da $0.078$ por tanto con una confianza del 95\% no podemos decir que el precio haya subido. Con obtener esta media muestral de una muestra de 7 pisos, entonces sí podriamos afirmarlo.
+Calculamos el valor de $z$ y el $p-value$ con $R$:
+\begin{equation*}
+    z = \frac{\bar{y} - \mu}{\sigma / \sqrt{n}} = \frac{20.54 - 16.81}{5.91 / \sqrt{5}} \approx 1.57    
+\end{equation*}
+    
+
+El p-value nos da $0.158$ por tanto con una confianza del 95\% no podemos decir que el precio haya subido.Con obtener esta media muestral de una muestra mayor , entonces quizás sí podríamos afirmarlo.
 
 \newpage
 
@@ -160,7 +189,7 @@ La mayoría caen por debajo de la media de $y$, representada en rojo. Calculamos
     [1] 0.1294
 \end{rcode}
 
-Nos da aún mayor que usando la muestra $y$, como es lógico dado que la muestra $x$ contiene valores más pequeños. Seguimos rechazando la idea que los precios han cambiado con significancia estadística.
+Nos da aún mayor que usando la muestra $y$, como es lógico dado que la muestra $x$ contiene valores más pequeños. Seguimos rechazando la idea de que los precios han cambiado con significancia estadística.
 \newpage
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
@@ -171,7 +200,7 @@ que ha habido un incremento en la probabilidad de compra por internet?
 Se trata de un problema de comparación de proporciones, muestral contra poblacional 
 
 \begin{equation*}
-p_{T} = 0,02 \ ; \quad n = 2300 \ ; \quad \hat{p} = \frac{94}{2300} = 0,041 \
+p_{T} = 0.02 \ ; \quad n = 2300 \ ; \quad \hat{p} = \frac{94}{2300} = 0.041 \
 \end{equation*}
 Planteamos las hipótesis del test:
 \begin{equation*}
@@ -182,15 +211,16 @@ Planteamos las hipótesis del test:
 \end{equation*}
 Como $p_T$ es una proporción poblacional, la distribución de la observada es 
 \begin{equation*}
-    \hat{p} \sim N \bigg(p_T, \frac{p_T\cdot(1-p_T)}{n}\bigg) =N\bigg(0.02, \frac{0.02 \cdot (0.98)}{2300}\bigg) = N(0,02 , 8,52 \cdot 10^{-6})
+    \hat{p} \sim N \bigg(p_T, \frac{p_T\cdot(1-p_T)}{n}\bigg) =N\bigg(0.02, \frac{0.02 \cdot (0.98)}{2300}\bigg) = N(0.02 , 8.52 \cdot 10^{-6})
 \end{equation*}
+Calculamos el valor del estadístico estandarizado o de contraste $z$:
 \begin{equation*}
-    z = \frac{\hat{p}- p_T}{\sqrt{\frac{p_T \cdot (1-p_T)}{n}}} = \frac{0,02}{\sqrt{8,52 \cdot 10 ^{-6}}} = 7,15
+    z = \frac{\hat{p}- p_T}{\sqrt{\frac{p_T \cdot (1-p_T)}{n}}} = \frac{0.041-0.02}{\sqrt{8.52 \cdot 10^{-6}}} = 7.15
 \end{equation*}
 
 \begin{figure*}[h]
     \centering
-    \includegraphics[width = 0.7\linewidth]{pr2_normstddist2.pdf}
+    \includegraphics[width = 0.7\linewidth]{pr2_normstddist1.pdf}
 \end{figure*}
 
 \begin{rcode}
@@ -208,7 +238,7 @@ afirmar que la tasa de respuesta obtenida en el target preseleecionado es mejor 
 \end{tcolorbox}
 
 \begin{equation*}
-    p_1 = 0,041 \ ; \quad  n_1 = 2300 \ ; \quad p_2 = 56 / 1000 = 0,056 \ ; \quad n_2 = 1000
+    p_1 = 0.041 \ ; \quad  n_1 = 2300 \ ; \quad p_2 = 56 / 1000 = 0.056 \ ; \quad n_2 = 1000
 \end{equation*}
 Suponemos que las muestras de clientes online $x_1$ y la de los preseleccionados $x_2$ son independientes. Planteamos las hipótesis 
 \begin{equation*}
@@ -220,7 +250,7 @@ Suponemos que las muestras de clientes online $x_1$ y la de los preseleccionados
 Como ambas proporciones siguen distribuciones binomiales, su diferencia también:
 \begin{equation*}
     \hat{p_2} - \hat{p_1} \sim N \bigg(p_2 - p_1, \frac{p_2 \cdot (1 - p_2)}{n_2} + \frac{p_1 \cdot (1 - p_1)}{n_1}\bigg)
-    = N(0,015, 6.99 \cdot 10 ^{-5})
+    = N(0.015, 6.99 \cdot 10 ^{-5})
 \end{equation*}
 Si suponemos que $H_0$ es cierta, tenemos que el $z-value$ es 
 \begin{equation*}
@@ -233,7 +263,7 @@ Si suponemos que $H_0$ es cierta, tenemos que el $z-value$ es
 \end{rcode}
 \begin{figure*}[h]
     \centering
-    \includegraphics[width = 0.7\linewidth]{pr2_normstddist1.pdf}
+    \includegraphics[width = 0.7\linewidth]{pr2_normstddist2.pdf}
 \end{figure*}
 \begin{rcode}
     > pnorm(z12, lower.tail = FALSE)
@@ -244,15 +274,17 @@ Con este p-value podemos decir con 95\% de confianza que las proporción de vent
 9. Un día me encuentro con un amigo al que hace tiempo que no veía, va acompañado por un hijo varón. Me dice pero que tiene dos hijos, cual es la probabilidad de que su otro hijo sea también varón ?
 \end{tcolorbox}
 
-La mitad, ya que el sexo de los hijos es una variable binomial independiente entre si. La probabilidad de ambos varones sería de un cuarto si no hubieses visto que por lo menos uno lo es. 
-
-
+Asumimos que el sexo de los hijos es independiente y que la probabilidad de que un hijo sea varón $V$ es la misma que la de que sea mujer $M$, es decir, $P(V) = P(M) = 1/2$. 
+El espacio muestral de los posibles pares de hijos es $\{VV, VM, MV, MM\}$. Dado que sabemos que al menos uno es varón, eliminamos la posibilidad $MM$. Quedan entonces $\{VV, VM, MV\}$. La probabilidad de que el otro hijo sea varón es
+\begin{equation*}
+    P(\text{otro hijo varón} \mid \text{al menos un varón}) = \frac{P(VV)}{P(VV) + P(VM) + P(MV)} = \frac{1/4}{1/4 + 1/4 + 1/4} = \frac{1}{3}
+\end{equation*}
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 10. En un concurso de televisión había 3 puertas a escoger, sólo detrás de una de ellas había un premio. El concursante escogía una y luego se revelaba una de las otras dos, una que no tenía el premio.
 ¿ Cuál es la mejor opción para el concursante, mantenerse en su primera opción o cambiar de puerta?
 \end{tcolorbox}
-
-Si es mejor cambiarse, porque la probabilidad de premio en la primera elección es $1/3$ y las otras dos puertas es $2/3$. Cuando se revela que una de ellas no es, la probabilidad de $2/3$ se concentra en la puerta no abierta y no escogida inicialmente.
-
+Suponemos, por el enunciado clásico, que el presentador sabe dónde en encuentra el premio y siempre revela una puerta sin premio.
+La probabilidad de ganar si se mantiene la elección inicial es $1/3$. Las otras dos puertas suman $2/3$, al revelar una de ellas sin premio, esa probabilidad se concentra en la puerta restante. \newline
+En conclusión, la mejor opción para el concursante es cambiar de puerta, ya que la probabilidad de ganar aumenta de $1/3$ a $2/3$.
 \end{document}
 

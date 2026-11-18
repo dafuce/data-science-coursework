@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2026.11.4)  18 NOV 2026 02:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=pdflatex 2026.11.4)  18 NOV 2026 23:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -76,7 +76,6 @@ Language: spanish.ldf 2021/05/27 v5.0q Spanish support from the babel system
 \es@quottoks=\toks19
 \es@quotdepth=\count272
 Package babel Info: Making " an active character on input line 570.
-Package babel Info: Making . an active character on input line 675.
 Package babel Info: Making < an active character on input line 722.
 Package babel Info: Making > an active character on input line 722.
 )) (/usr/share/texlive/texmf-dist/tex/generic/babel/locale/es/babel-spanish.tex
@@ -692,33 +691,36 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 52.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 66.
+(Font)              <10.95> on input line 57.
 
 
 [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}]
 <pr2_histprecios.pdf, id=19, 578.16pt x 433.62pt>
 File: pr2_histprecios.pdf Graphic file (type pdf)
 <use pr2_histprecios.pdf>
-Package pdftex.def Info: pr2_histprecios.pdf  used on input line 85.
-(pdftex.def)             Requested size: 239.66309pt x 179.74384pt.
-<pr2_normdist1.pdf, id=20, 578.16pt x 433.62pt>
+Package pdftex.def Info: pr2_histprecios.pdf  used on input line 88.
+(pdftex.def)             Requested size: 440.18959pt x 330.1435pt.
+
+
+[2 <./pr2_histprecios.pdf>]
+<pr2_normdist1.pdf, id=30, 578.16pt x 433.62pt>
 File: pr2_normdist1.pdf Graphic file (type pdf)
 <use pr2_normdist1.pdf>
-Package pdftex.def Info: pr2_normdist1.pdf  used on input line 102.
+Package pdftex.def Info: pr2_normdist1.pdf  used on input line 115.
 (pdftex.def)             Requested size: 293.4647pt x 220.09787pt.
 
 
-[2{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc} <./pr2_histprecios.pdf> <./pr2_normdist1.pdf>]
-<pr2_normdist2.pdf, id=40, 578.16pt x 433.62pt>
+[3{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc} <./pr2_normdist1.pdf>]
+<pr2_normdist2.pdf, id=43, 578.16pt x 433.62pt>
 File: pr2_normdist2.pdf Graphic file (type pdf)
 <use pr2_normdist2.pdf>
-Package pdftex.def Info: pr2_normdist2.pdf  used on input line 131.
+Package pdftex.def Info: pr2_normdist2.pdf  used on input line 154.
 (pdftex.def)             Requested size: 342.37051pt x 256.77312pt.
 
 
-[3 <./pr2_normdist2.pdf>]
+[4 <./pr2_normdist2.pdf>]
 \g__tcobox_out_iow=\write5
 \openout5 = `practica2_estadistica.listing'.
 
@@ -729,48 +731,48 @@ File: lstlang2.sty 2024/09/23 1.10c listings language file
 ) (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang3.sty
 File: lstlang3.sty 2024/09/23 1.10c listings language file
 )
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 149.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 178.
  (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) (./practica2_estadistica.listing
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <9> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1.
 )
-<pr2_histpermutaciones.pdf, id=51, 578.16pt x 433.62pt>
+<pr2_histpermutaciones.pdf, id=54, 578.16pt x 433.62pt>
 File: pr2_histpermutaciones.pdf Graphic file (type pdf)
 <use pr2_histpermutaciones.pdf>
-Package pdftex.def Info: pr2_histpermutaciones.pdf  used on input line 153.
+Package pdftex.def Info: pr2_histpermutaciones.pdf  used on input line 182.
 (pdftex.def)             Requested size: 342.37051pt x 256.77312pt.
 \openout5 = `practica2_estadistica.listing'.
 
  (./practica2_estadistica.listing)
 
-[4 <./pr2_histpermutaciones.pdf>]
-<pr2_normstddist2.pdf, id=75, 578.16pt x 433.62pt>
-File: pr2_normstddist2.pdf Graphic file (type pdf)
-<use pr2_normstddist2.pdf>
-Package pdftex.def Info: pr2_normstddist2.pdf  used on input line 193.
-(pdftex.def)             Requested size: 342.37051pt x 256.77312pt.
-\openout5 = `practica2_estadistica.listing'.
-
- (./practica2_estadistica.listing)
-
-[5 <./pr2_normstddist2.pdf>]
-\openout5 = `practica2_estadistica.listing'.
-
- (./practica2_estadistica.listing)
-<pr2_normstddist1.pdf, id=89, 578.16pt x 433.62pt>
+[5 <./pr2_histpermutaciones.pdf>]
+<pr2_normstddist1.pdf, id=78, 578.16pt x 433.62pt>
 File: pr2_normstddist1.pdf Graphic file (type pdf)
 <use pr2_normstddist1.pdf>
-Package pdftex.def Info: pr2_normstddist1.pdf  used on input line 236.
+Package pdftex.def Info: pr2_normstddist1.pdf  used on input line 223.
 (pdftex.def)             Requested size: 342.37051pt x 256.77312pt.
 \openout5 = `practica2_estadistica.listing'.
 
  (./practica2_estadistica.listing)
 
 [6 <./pr2_normstddist1.pdf>]
+\openout5 = `practica2_estadistica.listing'.
 
-[7] (./practica2_estadistica.aux
+ (./practica2_estadistica.listing)
+<pr2_normstddist2.pdf, id=93, 578.16pt x 433.62pt>
+File: pr2_normstddist2.pdf Graphic file (type pdf)
+<use pr2_normstddist2.pdf>
+Package pdftex.def Info: pr2_normstddist2.pdf  used on input line 266.
+(pdftex.def)             Requested size: 342.37051pt x 256.77312pt.
+\openout5 = `practica2_estadistica.listing'.
+
+ (./practica2_estadistica.listing)
+
+[7 <./pr2_normstddist2.pdf>]
+
+[8] (./practica2_estadistica.aux
 LaTeX Info: Redefining \. on input line 11.
 LaTeX Info: Redefining \% on input line 11.
 )
@@ -782,18 +784,18 @@ Package rerunfilecheck Info: File `practica2_estadistica.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 27337 strings out of 475116
- 506169 string characters out of 5764601
- 1087648 words of memory out of 5000000
- 49876 multiletter control sequences out of 15000+600000
- 586139 words of font info for 65 fonts, out of 8000000 for 9000
+ 27305 strings out of 475116
+ 505698 string characters out of 5764601
+ 1087128 words of memory out of 5000000
+ 49841 multiletter control sequences out of 15000+600000
+ 592119 words of font info for 67 fonts, out of 8000000 for 9000
  40 hyphenation exceptions out of 8191
  98i,8n,105p,557b,2275s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/share/texmf/fonts/type1/public/lm/lmex10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi10.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi6.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/lmr6.pfb></usr/share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy8.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtt9.pfb>
-Output written on practica2_estadistica.pdf (7 pages, 279076 bytes).
+Output written on practica2_estadistica.pdf (8 pages, 283829 bytes).
 PDF statistics:
- 183 PDF objects out of 1000 (max. 8388607)
- 133 compressed objects within 2 object streams
- 28 named destinations out of 1000 (max. 500000)
+ 187 PDF objects out of 1000 (max. 8388607)
+ 136 compressed objects within 2 object streams
+ 29 named destinations out of 1000 (max. 500000)
  43 words of extra memory for PDF output out of 10000 (max. 10000000)
 

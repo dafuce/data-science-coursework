@@ -37,9 +37,18 @@ pdf("pr2_normdist1.pdf", width = 8, height = 6)
 plot(x, y, type = "l", lwd = 2,
 	main = "Distribución normal (mu = 16.81, var = 4.99)",
 	xlab = "X_7", ylab = "Densidad")
-shade_x <- seq(mu - 4 * sigma, x_obs, length.out = 500)
-polygon(c(shade_x, rev(shade_x)),
-	   c(dnorm(shade_x, mean = mu, sd = sigma), rep(0, length(shade_x))),
+# Bilateral test (H0: mu = 16.81; H1: mu != 16.81), alpha = 0.05
+alpha <- 0.05
+crit_low <- qnorm(alpha / 2, mean = mu, sd = sigma)
+crit_high <- qnorm(1 - alpha / 2, mean = mu, sd = sigma)
+
+shade_low <- seq(mu - 4 * sigma, crit_low, length.out = 250)
+polygon(c(shade_low, rev(shade_low)),
+	   c(dnorm(shade_low, mean = mu, sd = sigma), rep(0, length(shade_low))),
+	   col = "lightblue", border = NA)
+shade_high <- seq(crit_high, mu + 4 * sigma, length.out = 250)
+polygon(c(shade_high, rev(shade_high)),
+	   c(dnorm(shade_high, mean = mu, sd = sigma), rep(0, length(shade_high))),
 	   col = "lightblue", border = NA)
 lines(x, y, lwd = 2)
 abline(v = x_obs, col = "red", lwd = 2, lty = 2)
@@ -49,7 +58,7 @@ dev.off()
 # z = (15.12 - 16.81) / (5.91 / sqrt(7)) ≈ -0.757
 z_value <- (x_obs - mu) / sigma
 
-pnorm(z_value) # Lower-tail p-value: P(X <= 15.12)
+2 * pnorm(-abs(z_value)) # Test bilateral
 
 # 5
 
@@ -62,21 +71,29 @@ y <- dnorm(x, mean = mu, sd = sigma)
 x2 <- c(13.57,14.8,22.36,22.7,29.29)
 mean(x2)
 
-
 pdf("pr2_normdist2.pdf", width = 8, height = 6)
 plot(x, y, type = "l", lwd = 2,
-	main = "Distribución normal (mu = 16.81, var = 4.99)",
+	main = sprintf("Distribución normal (mu = %.2f, var = %.2f)", mu, sigma^2),
 	xlab = "X_5", ylab = "Densidad")
-shade_x <- seq(mean(x2), mu + 4 * sigma, length.out = 500)
-polygon(c(shade_x, rev(shade_x)),
-	   c(dnorm(shade_x, mean = mu, sd = sigma), rep(0, length(shade_x))),
+
+# Contraste bilateral con alpha = 0.05 (0.025 en cada cola).
+alpha <- 0.05
+crit_low <- qnorm(alpha / 2, mean = mu, sd = sigma)
+crit_high <- qnorm(1 - alpha / 2, mean = mu, sd = sigma)
+shade_low <- seq(mu - 4 * sigma, crit_low, length.out = 250)
+polygon(c(shade_low, rev(shade_low)),
+	   c(dnorm(shade_low, mean = mu, sd = sigma), rep(0, length(shade_low))),
+	   col = "lightblue", border = NA)
+shade_high <- seq(crit_high, mu + 4 * sigma, length.out = 250)
+polygon(c(shade_high, rev(shade_high)),
+	   c(dnorm(shade_high, mean = mu, sd = sigma), rep(0, length(shade_high))),
 	   col = "lightblue", border = NA)
 lines(x, y, lwd = 2)
 abline(v = mean(x2), col = "red", lwd = 2, lty = 2)
 dev.off()
 
 z2_value <- (mean(x2)-mu) / sigma
-pnorm(z2_value, lower.tail = FALSE)
+2 * pnorm(-abs(z2_value))
 
 # 6
 rm(list = ls()) # borrar todas las variables guardadas
@@ -108,6 +125,8 @@ dev.off()
 
 # 7
 
+rm(list = ls()) #borrar todas las variables guardadas
+
 p_T <- 0.02
 n <- 2300
 successes <- 94
@@ -115,6 +134,7 @@ p_hat <- successes / n
 
 94/2300
 # H0: p_hat - p_T = 0; H1: p_hat - p_T > 0
+
 variance_hat <- p_T * (1 - p_T) / n
 se_hat <- sqrt(variance_hat)
 z_value <- (p_hat - p_T) / se_hat
@@ -123,22 +143,23 @@ p_value <- pnorm(z_value, lower.tail = FALSE)
 p_hat
 variance_hat
 z_value
-p_value
+cat(sprintf("One-sided p-value: %.3e\n", p_value))
 
 z_max <- max(4, ceiling(z_value) + 1)
 z_axis <- seq(-4, z_max, length.out = 1000)
 z_density <- dnorm(z_axis)
 
-pdf("pr2_normstddist2.pdf", width = 8, height = 6)
+pdf("pr2_normstddist1.pdf", width = 8, height = 6)
 plot(z_axis, z_density, type = "l", lwd = 2,
 	main = "Normal estándard del estadístico",
 	xlab = "z", ylab = "Densidad")
 
-# Shade the upper-tail area corresponding to the p-value.
-shade_z <- seq(z_value, z_max, length.out = 300)
-polygon(c(z_value, shade_z, z_max),
+# Shade the upper-tail rejection region from the critical value.
+z_critical <- qnorm(0.95)
+shade_z <- seq(z_critical, z_max, length.out = 300)
+polygon(c(z_critical, shade_z, z_max),
 	c(0, dnorm(shade_z), 0),
-	col = "lightblue", border = "blue")
+	col = "lightblue", border = NA)
 lines(z_axis, z_density, lwd = 2)
 abline(v = z_value, col = "red", lwd = 2, lty = 2)
 dev.off()
@@ -171,16 +192,14 @@ plot(z_axis, z_density, type = "l", lwd = 2,
 	xlab = "z", ylab = "Densidad")
 
 # Shade the upper-tail area corresponding to the p-value.
-shade_z <- seq(z12, 4, length.out = 300)
-polygon(c(z12, shade_z, 4),
+alpha12 <- 0.05
+z_critical12 <- qnorm(1 - alpha12)
+shade_z <- seq(z_critical12, 4, length.out = 300)
+polygon(c(z_critical12, shade_z, 4),
 	c(0, dnorm(shade_z), 0),
 	col = "lightblue", border = NA)
 lines(z_axis, z_density, lwd = 2)
 abline(v = z12, col = "red", lwd = 2, lty = 2)
-#points(z12, dnorm(z12), col = "red", pch = 19)
-#text(z12, dnorm(z12), labels = sprintf("z = %.2f", z12),
-#	pos = 4, col = "red")
-#text(3.1, 0.18, labels = sprintf("p-value = %.4f", p_value12))
 
 dev.off()
 
