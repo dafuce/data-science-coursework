@@ -128,6 +128,24 @@ Cuando una variable es la suma de muchos efectos aleatorios independientes $\var
                                   (Other)   :178  
 > pisos <- pisos[!duplicated(pisos), ]
 \end{rcode}
+pdf("pr2_normstddist1.pdf", width = 8, height = 6)
+plot(z_axis, z_density, type = "l", lwd = 2,
+	main = "Normal estándard del estadístico",
+	xlab = "z", ylab = "Densidad")
+
+# Shade the upper-tail area corresponding to the p-value.
+shade_z <- seq(z12, 4, length.out = 300)
+polygon(c(z12, shade_z, 4),
+	c(0, dnorm(shade_z), 0),
+	col = "lightblue", border = NA)
+lines(z_axis, z_density, lwd = 2)
+abline(v = z12, col = "red", lwd = 2, lty = 2)
+#points(z12, dnorm(z12), col = "red", pch = 19)
+#text(z12, dnorm(z12), labels = sprintf("z = %.2f", z12),
+#	pos = 4, col = "red")
+#text(3.1, 0.18, labels = sprintf("p-value = %.4f", p_value12))
+
+dev.off()
 
 Hemos sabido que hay duplicados porque el que tomó los datos duplicó registros para hinchar la base de datos. En concreto, había 43 duplicados.
 

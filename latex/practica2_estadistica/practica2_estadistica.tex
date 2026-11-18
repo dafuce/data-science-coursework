@@ -4,7 +4,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
 \usepackage[spanish]{babel}
-\usepackage[margin=1in]{geometry}
+\usepackage[margin=0.75in]{geometry}
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs}
 \usepackage{graphicx}
@@ -66,41 +66,48 @@ es igual o no a un cierto valor nominal. Especifique como obtendría o cual ser�
 Dada una muestra de $n$ observaciones, cogeremos $i$ veces muestras de $m$ observaciones con $m<n$ y calcularemos la media muestral $\overline{X}_{m_i}$ de todas ellas. Representadas en un dotline, veremos una distribución de medias la cual si tomamos con un valor $m$ 
 suficientemente grande y con un nombre de repeticiones $i$ también grande, tomará forma simétrica y normal con una función de distribución parecida a $N(\mu,\frac{\sigma}{m})$
 
-\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
-3. Un amigo me ofrece un piso por valor de 8MPts. Dejando de lado todos los otros factores intervinientes en la decisión de compra de un piso y solo teniendo en cuenta su precio, puedo considerar que
-se trata de una buena ocasión para comprar? Qué suposiciones necesito hacer para resolver el problema?
-Utilizar los datos proporcionados.
-\end{tcolorbox}
-
-Hay que suponer que la muestra tenemos ha sido obtenida de forma aleatoria, independiente, que con las 221 observaciones ya estimamos la población total de pisos a la venta, y la distribución de referencia es la que resulta de dibujar estos precios en una gráfica.
-\\
-Sólo hay 5 pisos con valor de 8MPtas. o inferior, entonces tenemos que el $p-value = 5/221 = 0,023$ y en efecto, es un piso barato con 95\% de confianza, deberíamos comprarlo. 
-
-
 \newpage
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
-4. Sabemos que la media de los precios de los pisos (de 3 habitaciones) en l'Eixample es de $\mu = 16,81$ y su desviación tipo es de $\sigma = 5,91$. Suponiendo que la muestra obtenida
-en el ejercicio anterior es aleatoria, ¿ podemos asegurar de que se trata de una muestra de pisos de l'Eixample?
+3. Se nos ofrece un piso por valor de 8MPts. Sólo teniendo en cuenta su precio, se trata de una buena ocasión para comprar? Qué suposiciones necesito hacer para resolver el problema?
+Utilizar los datos proporcionados.
 \end{tcolorbox}
 
+\noindent
+\begin{minipage}[t]{0.49\textwidth}
+\vspace{0pt}
+Hay que suponer que la muestra tenemos ha sido obtenida de forma aleatoria, independiente, que con las 221 observaciones ya estimamos la población total de pisos a la venta, y la distribución de referencia es la que resulta de dibujar estos precios en una gráfica.
+Sólo hay 5 pisos con valor de 8MPtas. o inferior, entonces el $p-value = 5/221 = 0,023$ por lo que es un piso barato con 95\% de confianza, deberíamos comprarlo.
+\end{minipage}\hfill
+\begin{minipage}[t]{0.49\textwidth}
+\vspace{0pt}
+ \centering
+ \includegraphics[width=\linewidth]{pr2_histprecios.pdf}
+\end{minipage}
+
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+4. Sabemos que la media de los precios de los pisos en l'Eixample es de $\mu = 16,81$ y su desviación tipo es de $\sigma = 5,91$. Suponiendo que la muestra obtenida
+en el ejercicio anterior es aleatoria, ¿podemos asegurar de que es una muestra de pisos de l'Eixample?
+
+\end{tcolorbox}
 \[ x = (7.80\ 8.25\ 12.60\ 13.50\ 15.96\ 16.46\ 31.29)\ , \quad \bar{x} = 15.12\ , \quad n = 7
 \]
-Supongamos que si que hemos obtenido la muestra del eixample de forma independiente y que la distribución de referencia es normal. En estas condiciones vamos a representar la media observada 
+Supongamos que las observaciones de la muestra son independiente y que la distribución de referencia es normal. En estas condiciones, la media observada sigue 
 \begin{equation*}
     \overline{x}_n \sim N\Big(\mu, \frac{\sigma^2}{n}\Big) = N(16,810 , 4,99)
 \end{equation*}
 
-\begin{figure*}
-    %\includegraphics[]{}
-\end{figure*}
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width = 0.6\linewidth]{pr2_normdist1.pdf}
+\end{figure}
 
 El p-value da 0,22 que es bastante grande, entonces decimos que obtener una muestra como $x$ de los pisos del eixample es posible.
 
-
+\newpage
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
-5. El siguiente año, los precios de una muestra aleatoria de pisos de 3hab. en l'Eixample han sido 
+5. El siguiente año, los precios de una muestra aleatoria de pisos en l'Eixample han sido 
 \[
 y = (13.57 \ 14.80 \ 22.36 \ 22.70 \ 29.29)
 \]
@@ -118,9 +125,12 @@ Planteamos el test estadístico
     \end{cases}
 \end{equation*}
 En este caso tenemos que ver la probabilidad de obtener $20,54$ o un valor superior en una muestra de 5 elementos.
-\begin{figure*}
-    % \includegraphics[]{}
-\end{figure*}
+
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width = 0.7\linewidth]{pr2_normdist2.pdf}
+\end{figure}
+
 El p-value nos da $0.078$ por tanto con una confianza del 95\% no podemos decir que el precio haya subido. Con obtener esta media muestral de una muestra de 7 pisos, entonces sí podriamos afirmarlo.
 
 \newpage
@@ -128,20 +138,44 @@ El p-value nos da $0.078$ por tanto con una confianza del 95\% no podemos decir 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 6. Calcular el p valor en la misma prueba del problema anterior, usando el método de permutaciones.
 \end{tcolorbox}
+Tomamos las dos muestras $x,y$, de $7$ y $5$ elementos respectivamente, que dijimos que podian ser ambos del Eixample, le aplicaremos unas permutaciones aleatorias para fabricar 10000 nuevas muestras $y'$ de 5 observaciones. 
 
+\begin{rcode}
+for (i in 1:10000) {
+  permutada <- sample(c(x, y))
+  y_prima <- permutada[1:5]
+  perm_means[i] <- mean(y_prima)
+}
+\end{rcode}
 
+\begin{figure}[h!]
+ \centering
+ \includegraphics[width = 0.7\linewidth]{pr2_histpermutaciones.pdf}
+\end{figure}
+
+La mayoría caen por debajo de la media de $y$, representada en rojo. Calculamos el $p-value$
+\begin{rcode}
+    > p_value_permutation <- sum(perm_means >= mean(y)) / 10000
+    > p_value_permutation
+    [1] 0.1294
+\end{rcode}
+
+Nos da aún mayor que usando la muestra $y$, como es lógico dado que la muestra $x$ contiene valores más pequeños. Seguimos rechazando la idea que los precios han cambiado con significancia estadística.
+\newpage
 
 \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
 7. Sabemos que la probabilidad de compra de un producto en el canal internet es de 0,02. En un mes se han conectado 2300 visitantes, de los cuales 94 han comprado nuestro producto, ¿ puedo pensar
 que ha habido un incremento en la probabilidad de compra por internet?
 \end{tcolorbox}
 
-Comparación de proporciones, muestral vs proporcion poblacional 
+Se trata de un problema de comparación de proporciones, muestral contra poblacional 
 
 \begin{equation*}
-p_{T} = 0,02 \ ; \quad n = 2300 \ ; \quad \hat{p} = \frac{94}{2300} = 0,041 \ ;
-\qquad
-    \begin{cases}
+p_{T} = 0,02 \ ; \quad n = 2300 \ ; \quad \hat{p} = \frac{94}{2300} = 0,041 \
+\end{equation*}
+Planteamos las hipótesis del test:
+\begin{equation*}
+        \begin{cases}
         H_0 : \hat{p} - p_T \leq 0 \\
         H_1 : \hat{p} - p_T > 0
     \end{cases}
@@ -153,6 +187,12 @@ Como $p_T$ es una proporción poblacional, la distribución de la observada es
 \begin{equation*}
     z = \frac{\hat{p}- p_T}{\sqrt{\frac{p_T \cdot (1-p_T)}{n}}} = \frac{0,02}{\sqrt{8,52 \cdot 10 ^{-6}}} = 7,15
 \end{equation*}
+
+\begin{figure*}[h]
+    \centering
+    \includegraphics[width = 0.7\linewidth]{pr2_normstddist2.pdf}
+\end{figure*}
+
 \begin{rcode}
     > pnorm(z_value, lower.tail = FALSE)
     [1] 4.368528e-13
@@ -191,9 +231,9 @@ Si suponemos que $H_0$ es cierta, tenemos que el $z-value$ es
     > z12
     [1] 1.809633
 \end{rcode}
-Representamos esta distribución normal estándard con el $z-value$ obtenido
-\begin{figure*}
-    %\includegraphics*[keyvals]{imagefile}
+\begin{figure*}[h]
+    \centering
+    \includegraphics[width = 0.7\linewidth]{pr2_normstddist1.pdf}
 \end{figure*}
 \begin{rcode}
     > pnorm(z12, lower.tail = FALSE)
