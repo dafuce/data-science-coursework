@@ -1,0 +1,15 @@
+    map(page, (rank, out_links)):
+        for q in out_links:
+            emit(q, rank / len(out_links))
+        emit(page, out_links)
+
+    reduce(page, values): # values contain other's ranks and the page's out-links
+        sum_rank = 0
+        out_links = None
+        for v in values:
+            if isinstance(v, list): # separate out-links from rank contributions
+                out_links = v
+            else:
+                sum_rank += v
+        new_rank = 0.15 + 0.85 * sum_rank
+        emit(page, (new_rank, out_links)) # keep format for next iteration

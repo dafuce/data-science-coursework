@@ -132,5 +132,71 @@ This satisfies the "at least a minute" rule for mappers. To obtain bigger splits
             (a) Rank your proposed fixes by impact and five the expeted total job time before and after applying them.
     \end{tcolorbox}
 
+    \newpage 
 \section*{Exercise 2: Pagerank, one iteration at a time}
+PageRank is iterative: each page's rank is recomputed from the ranks of the pages that link to it, again and again until the ranks stabilize. In MapReduce every iteration is a separate job, which reads its input from HDFS and writes its output back to HDFS. How much does that cost?
+\subsection*{Setting}
+We have the same node cluster as the exercise before plus a disk write rate of 100 MB/s per node and HDFS replication 3.\newline
+There are $10^9$ pages and $10^{10}$ links stored on HDFS as records \texttt{page $\rightarrow$ (rank, [out-links])}. Page ids and ranks take 8 bytes each. \newline
+Every page starts with rank 1 and at each iteration 
+\begin{equation*}
+    PR(p) = 0.15 + 0.85 \sum_{q \rightarrow p } \frac{PR(q)}{out(q)}
+\end{equation*}
+summing over the pages $q$ that link to $p$, where $out(q)$ is the number of out-links of $q$. \newline
+We run 30 iterations of the PageRank algorithm.
+\subsection*{Questions}
+
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+1. One iteration. Give the pseudocode of map and reduce for one iteration. Its output must be the input of the next iteration. Hint: to produce that output, the reducer of page p needs the contributions to $p$ and $p$'s list of out-links. 
+\end{tcolorbox}
+
+\begin{rcode}
+    map(page, (rank, out_links)):
+        for q in out_links:
+            emit(q, rank / len(out_links))
+        emit(page, out_links)
+
+    reduce(page, values): # values contain other's ranks and the page's out-links
+        sum_rank = 0
+        out_links = None
+        for v in values:
+            if isinstance(v, list): # separate out-links from rank contributions
+                out_links = v
+            else:
+                sum_rank += v
+        new_rank = 0.15 + 0.85 * sum_rank
+        emit(page, (new_rank, out_links)) # keep format for next iteration
+\end{rcode}
+
+\newpage
+
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+2. Cost. Estimate the bytes read from HDFS, shuffled, and written to HDFS (counting replication) in one iteration, and its duration (shuffle and write, plus $\sim$ 30s to start a job). Then for the 30 iterations.
+\end{tcolorbox}
+
+Assume page ids, ranks, and link ids each take 8 bytes, and ignore record and serialization overhead. Each iteration reads the current page records: one page id and rank per page, plus all out-link ids.
+\begin{equation*}
+    B_{\text{read}} = 10^9(8+8) + 10^{10}\cdot 8
+    = 9.6\cdot10^{10}\text{ bytes} = 96\text{ GB}.
+\end{equation*}
+
+The shuffle is the mapper output transferred across the network and grouped by key (destination page) so that each reducer receives all contributions for its page. For each of the $10^{10}$ links, the mapper emits the destination page id and a rank contribution (16 bytes). It also emits each source page id with its out-link list, so the reducer can preserve that list in the next iteration. These structural records contain $10^9$ page ids and $10^{10}$ link ids. Therefore:
+\begin{equation*}
+    B_{\text{shuffle}} = 10^{10}(8+8) + 10^9\cdot8 + 10^{10}\cdot8
+    = 2.48\cdot10^{11}\text{ bytes} = 248\text{ GB}.
+\end{equation*}
+
+Each reducer writes the updated rank and unchanged out-link list for every page: 96 GB logically, or 288 GB of physical HDFS writes with replication factor 3. Since the disk write rate is $100$ MB/s per node, the aggregate write rate is $20\cdot100=2{,}000$ MB/s $\approx 2$ GB/s, so replicated writes take $288/2=144$ s. At the ideal aggregate network rate, shuffle takes $248/(20\cdot125)\approx99.2$ s. Including about 30 s to start the job gives approximately 273 s per iteration for shuffle and write. The HDFS read time cannot be estimated from the supplied information because no read rate is given. For 30 iterations, the totals are 2.88 TB read, 7.44 TB shuffled, and 8.64 TB physically written; estimated shuffle/write/startup time is about 8,190 s (2.3 hours), excluding read time and other overheads.
+
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+3. Discussion. Which fraction of what is written at each iteration is the graph structure, which never changes? Which limitations of MapReduce seen in class explain this cost, and what does writing every iteration to HDFS buy in exchange? What would a system need to do to run this computation much faster? (We will come back to it in the Spark session.)
+\end{tcolorbox}
+
+Each iteration writes 96 GB logically, but the graph structure (out-link lists) accounts for $80$ GB while only 8 GB is new rank data. Thus \textbf{83\%} of what is written per iteration is the unchanging graph structure. Over 30 iterations, writing 80 GB of graph structure 30 times wastes 2.4 TB of I/O on data that never changes.
+
+The root cause lies in MapReduce's design: it enforces stateless computation with no persistent state between jobs, requiring all data to be reread from HDFS each iteration. This design is intentional—without in-memory caching, the system is safe and fault-tolerant (any node can fail and work is restarted by re-reading from durable HDFS). As you noted in class, this philosophy enables cheap hardware: nodes need only compute power and I/O, not large memory. However, this same constraint makes iterative algorithms expensive because every job starts fresh, reloading static data.
+
+Writing to HDFS between iterations does provide real benefits: fault tolerance (restart from iteration $i$ if a node fails, not from iteration 1), synchronization barriers (all nodes finish before the next iteration starts, eliminating stragglers), and job modularity. For a stable computation like PageRank without failures, though, these guarantees are redundant—we pay the full cost of fault tolerance even though we may never need it.
+
+The solution is to keep the graph in RAM. Load the graph structure once into distributed memory across worker nodes and keep it resident for all 30 iterations; each iteration then reads and writes only rank data. This reduces per-iteration I/O from 96 GB read + 288 GB write (with replication) to roughly 8 GB write, a 36× reduction. This is exactly what Apache Spark does with RDDs and iterative caching—which we will explore next.
 \end{document}
