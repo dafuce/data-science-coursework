@@ -1,7 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1795039813.35639 "/home/daniel/Documents/Master/Data Science/data-science-coursework/latex/practica2_estadistica/practica2_estadistica.tex" "practica2_estadistica.pdf" "practica2_estadistica" 1795039813.99863 0
+["pdflatex"] 1795040268.61073 "/home/daniel/Documents/Master/Data Science/data-science-coursework/latex/practica2_estadistica/practica2_estadistica.tex" "practica2_estadistica.pdf" "practica2_estadistica" 1795040269.45435 0
   "/etc/texmf/web2c/texmf.cnf" 1793827977.40718 475 c0e671620eb5563b2130f56340a5fde8 ""
-  "/home/daniel/Documents/Master/Data Science/data-science-coursework/latex/practica2_estadistica/practica2_estadistica.tex" 1795039813.09598 13879 6ba791ee8e6073bf9e546f9ad815ade3 ""
+  "/home/daniel/Documents/Master/Data Science/data-science-coursework/latex/practica2_estadistica/practica2_estadistica.tex" 1795040268.34787 13915 03243aa07cd28f26e230fa9da61ad33f ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/jknappen/ec/ecrm1095.tfm" 1136768653 3584 929cdff2b7a8c11bd4d49fd68cb0ae70 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm" 1246382020 916 f87d7c45f9c908e672703b83b72241a3 ""
@@ -202,10 +202,10 @@
   "pr2_normdist2.pdf" 1795029728.39661 14295 74ac859a42e58f80aeb9c02cb6accd34 ""
   "pr2_normstddist1.pdf" 1795038301.27296 11044 067d6e18d9424c5fbefc9aaa21973f85 ""
   "pr2_normstddist2.pdf" 1795029469.13623 11928 64561a333930796787f0deea1377fd9e ""
-  "practica2_estadistica.aux" 1795039813.94049 362 a62c2386058572ac5196f6bd8bf8f62e "pdflatex"
-  "practica2_estadistica.listing" 1795039813.92049 56 3d0c39a1cbac074d14ef5a3e3648da89 "pdflatex"
-  "practica2_estadistica.out" 1795039813.80449 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "practica2_estadistica.tex" 1795039813.09598 13879 6ba791ee8e6073bf9e546f9ad815ade3 ""
+  "practica2_estadistica.aux" 1795040269.38187 362 a62c2386058572ac5196f6bd8bf8f62e "pdflatex"
+  "practica2_estadistica.listing" 1795040269.36155 56 3d0c39a1cbac074d14ef5a3e3648da89 "pdflatex"
+  "practica2_estadistica.out" 1795040269.21787 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "practica2_estadistica.tex" 1795040268.34787 13915 03243aa07cd28f26e230fa9da61ad33f ""
   (generated)
   "practica2_estadistica.aux"
   "practica2_estadistica.listing"

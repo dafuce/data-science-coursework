@@ -1,0 +1,136 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{tcolorbox}
+\tcbuselibrary{listings}
+
+\newtcblisting{rcode}{
+    listing only,
+    colback=gray!5,
+    colframe=gray!20,
+    boxrule=0.4pt,
+    sharp corners,
+    listing options={
+        language=R,
+        basicstyle=\ttfamily\footnotesize,
+        breaklines=true,
+        showstringspaces=false,
+        literate=
+            {á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'{\i}}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+            {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+            {à}{{\`a}}1 {è}{{\`e}}1 {ì}{{\`\i}}1 {ò}{{\`o}}1 {ù}{{\`u}}1
+            {À}{{\`A}}1 {È}{{\`E}}1 {Ì}{{\`I}}1 {Ò}{{\`O}}1 {Ù}{{\`U}}1
+            {ñ}{{\~n}}1 {Ñ}{{\~N}}1 {ç}{{\c c}}1 {Ç}{{\c C}}1
+            {ü}{{\"u}}1 {Ü}{{\"U}}1
+    }
+}
+
+\title{MapReduce Homework}
+\author{
+    Daniel Fuertes\\
+    %\texttt{student1@example.com}
+    \and
+    Oscar Moreno\\
+    %\texttt{student2@example.com}
+    \and
+    Marc Torres\\
+    %\texttt{student3@example.com}
+}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\section*{Exercise 1: Postmortem of a slow job}
+\subsection*{Setting}
+The job in question is a word count applying a map that emits \texttt{(hashtag, 1)} and a reduce that sums the values per hashtag. We have a cluster 
+of 20 nodes with 8 containers each with 125 MB/s network bandwidth. The data to process is 2TB of tweets and the average tweet takes 1KB and contains 0.5 hashtags. The data is stored in a HDFS as 200,000 files of 10MB each. 
+The job is configured at one split per file, without combiner and 1 reducer. \newline
+Assume that starting a task costs 10s, a mapper processes 10MB/s, an intermediate \texttt{(key,value)} takes 20 bytes, a reducer processes $10^6$ pairs per second, the hashtag \texttt{\#worldcup} accounts for 5\% of all ocurrences and the disk I/O is negligible.
+\subsection*{Questions}
+
+\subsubsection*{Map Phase}
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+(a) How many map tasks does the job run? How many per node? Compare with the rule of thumb seen in class
+\end{tcolorbox}
+
+With 200k files and one split per file, the job will run 200k map tasks. With 20 nodes and 8 containers per node, there are 160 slots available, so each node will run 200k / 20 = 10k map tasks, which is much higher than the rule of having between 10 and 100 per node.
+
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+(b) Estimate the duration of the map phase (number of waves x duration of a task). Which fraction of that time is task start-up overhead? What would be the duration with no overhead at all?
+\end{tcolorbox}
+
+With 200k map tasks and 160 slots, there will be 200k / 160 = 1250 waves of mappers. Each task processes 10MB/s and the split size is 10MB, so the duration of a task is 1s. Including the 10s start-up overhead, each task takes 11s. Therefore, the total duration of the map phase is 1250 waves x 11s = 13750s. 
+The fraction of time spent on start-up overhead is 1250 waves x 10s / 13750s $\approx$ 0.91. With no overhead, the duration would be 1250 waves x 1s = 1250s.
+
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+(c) Recompute (a) and (b) with 128MB splits and with 1GB splits. Which option satisfies "a mapper should take at least a minute"? How can you obtain bigger splits when the data is stored in small files?
+\end{tcolorbox}
+
+With 128MB splits, the number of map tasks will be 2TB/128MB $\approx$ 16,384, each node will run 16,384 / 20 $\approx$ 819 map tasks, which is still higher than the rule of thumb. \newline
+The duration of the map phase would be 16,384 / 160 = 102.4 waves of mappers. Each task processes 10MB/s and the split size is 128MB, so the duration of a task is 128MB / 10MB/s = 12.8s. Including the 10s start-up overhead, each task takes 22.8s. Therefore, the total duration of the map phase is 102.4 waves x 22.8s $\approx$ 2331s.\newline
+\newline
+With 1GB splits, the number of map tasks will be 2TB/1GB $\approx$ 2048, each node will run 2048 / 20 $\approx$ 102 map tasks, which is closer to the rule of thumb. \newline
+The duration of the map phase would be 2048 / 160 = 12.8 waves of mappers. Each task processes 10MB/s and the split size is 1GB, so the duration of a task is 1GB / 10MB/s = 102.4s. Including the 10s start-up overhead, each task takes 112.4s. Therefore, the total duration of the map phase is 12.8 waves x 112.4s $\approx$ 1439s.\newline
+This satisfies the "at least a minute" rule for mappers. To obtain bigger splits when the data is stored in small files, one can use the CombineFileInputFormat to combine multiple small files into a single split.
+
+
+\subsubsection*{Shuffle}
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+(a) How many intermediate pairs, and how many bytes, does the map phase emit?
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+(b) Same question if a combiner is added and splits are 1GB (a 1GB split contains $\sim$ 50,000 distinct hashtags)
+\end{tcolorbox}
+
+
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+(c) Why can the reduce function be reused as the combiner here? Give one aggregate on this same data for which it cannot be reused, and explain how you would still reduce the network traffic.
+\end{tcolorbox}
+
+\subsubsection*{Reduce Phase}
+
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+(a) With $R=1$,, estimate the time the reducer spends fetching its input and processing it. What is the rest of the cluster doing meanwhile?
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+(b) Choose $R$ with the formulas seen in class (one wave / two waves of reducers) and justify your choice.
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+(c) With your $R$ and no combiner, how long does the reducer that receives \texttt{\#worldcup} take compared with the others? Would a larger $R$ help? Why? 
+\end{tcolorbox}
+
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+(d) Same question with a combiner.
+\end{tcolorbox}
+
+\subsubsection*{Failure}
+    \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+        (a) With 1GB dplits, a node dies after all the maps have completed, while the reducers are fetching their input. Which tasks are re-executed, and why? Which tasks are not re-executed? Estimate the delay this causes.
+    \end{tcolorbox}
+
+    Potato
+
+\subsubsection*{Scaling out}
+\begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+        (a) A colleague proposes doubling the cluster to 40 nodes without changing the job (small files, no combiner, $R=1$). For each phase, what improves and what does not? Relate your answer to the synchronization barriers of MapReduce.
+\end{tcolorbox}
+
+\subsubsection*{Your recommendation}
+    \begin{tcolorbox}[colback=gray!20,colframe=gray!20, sharp corners]
+            (a) Rank your proposed fixes by impact and five the expeted total job time before and after applying them.
+    \end{tcolorbox}
+
+\section*{Exercise 2: Pagerank, one iteration at a time}
+\end{document}

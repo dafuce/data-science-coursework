@@ -18,7 +18,7 @@ dev.off()
 
 length(x0)
 x1 <- c(x0 <= 8)
-sum(x1) # Number of elements in x0 that are <= 8
+sum(x1) # Número de elementos de x0 menores o iguales a 8
 
 sum(x1)/length(x0)
 # 4
@@ -27,38 +27,38 @@ mu <- 16.81
 n <- 7
 sigma <- 5.91/sqrt(n)
 
-x_obs <- 15.12
+x_observada <- 15.12
 
 x <- seq(mu - 4 * sigma, mu + 4 * sigma, length.out = 1000)
 y <- dnorm(x, mean = mu, sd = sigma)
 
-pdf("pr2_normdist1.pdf", width = 8, height = 6)
+pdf("pr2_distnormal1.pdf", width = 8, height = 6)
 
 plot(x, y, type = "l", lwd = 2,
 	main = "Distribución normal (mu = 16.81, var = 4.99)",
 	xlab = "X_7", ylab = "Densidad")
-# Bilateral test (H0: mu = 16.81; H1: mu != 16.81), alpha = 0.05
-alpha <- 0.05
-crit_low <- qnorm(alpha / 2, mean = mu, sd = sigma)
-crit_high <- qnorm(1 - alpha / 2, mean = mu, sd = sigma)
+# Contraste bilateral (H0: mu = 16.81; H1: mu != 16.81), alfa = 0.05
+alfa <- 0.05
+critico_inferior <- qnorm(alfa / 2, mean = mu, sd = sigma)
+critico_superior <- qnorm(1 - alfa / 2, mean = mu, sd = sigma)
 
-shade_low <- seq(mu - 4 * sigma, crit_low, length.out = 250)
-polygon(c(shade_low, rev(shade_low)),
-	   c(dnorm(shade_low, mean = mu, sd = sigma), rep(0, length(shade_low))),
+sombreado_inferior <- seq(mu - 4 * sigma, critico_inferior, length.out = 250)
+polygon(c(sombreado_inferior, rev(sombreado_inferior)),
+	   c(dnorm(sombreado_inferior, mean = mu, sd = sigma), rep(0, length(sombreado_inferior))),
 	   col = "lightblue", border = NA)
-shade_high <- seq(crit_high, mu + 4 * sigma, length.out = 250)
-polygon(c(shade_high, rev(shade_high)),
-	   c(dnorm(shade_high, mean = mu, sd = sigma), rep(0, length(shade_high))),
+sombreado_superior <- seq(critico_superior, mu + 4 * sigma, length.out = 250)
+polygon(c(sombreado_superior, rev(sombreado_superior)),
+	   c(dnorm(sombreado_superior, mean = mu, sd = sigma), rep(0, length(sombreado_superior))),
 	   col = "lightblue", border = NA)
 lines(x, y, lwd = 2)
-abline(v = x_obs, col = "red", lwd = 2, lty = 2)
+abline(v = x_observada, col = "red", lwd = 2, lty = 2)
 
 dev.off()
 
 # z = (15.12 - 16.81) / (5.91 / sqrt(7)) ≈ -0.757
-z_value <- (x_obs - mu) / sigma
+valor_z <- (x_observada - mu) / sigma
 
-2 * pnorm(-abs(z_value)) # Test bilateral
+2 * pnorm(-abs(valor_z)) # Contraste bilateral
 
 # 5
 
@@ -71,29 +71,29 @@ y <- dnorm(x, mean = mu, sd = sigma)
 x2 <- c(13.57,14.8,22.36,22.7,29.29)
 mean(x2)
 
-pdf("pr2_normdist2.pdf", width = 8, height = 6)
+pdf("pr2_distnormal2.pdf", width = 8, height = 6)
 plot(x, y, type = "l", lwd = 2,
 	main = sprintf("Distribución normal (mu = %.2f, var = %.2f)", mu, sigma^2),
 	xlab = "X_5", ylab = "Densidad")
 
-# Contraste bilateral con alpha = 0.05 (0.025 en cada cola).
-alpha <- 0.05
-crit_low <- qnorm(alpha / 2, mean = mu, sd = sigma)
-crit_high <- qnorm(1 - alpha / 2, mean = mu, sd = sigma)
-shade_low <- seq(mu - 4 * sigma, crit_low, length.out = 250)
-polygon(c(shade_low, rev(shade_low)),
-	   c(dnorm(shade_low, mean = mu, sd = sigma), rep(0, length(shade_low))),
+# Contraste bilateral con alfa = 0.05 (0.025 en cada cola).
+alfa <- 0.05
+critico_inferior <- qnorm(alfa / 2, mean = mu, sd = sigma)
+critico_superior <- qnorm(1 - alfa / 2, mean = mu, sd = sigma)
+sombreado_inferior <- seq(mu - 4 * sigma, critico_inferior, length.out = 250)
+polygon(c(sombreado_inferior, rev(sombreado_inferior)),
+	   c(dnorm(sombreado_inferior, mean = mu, sd = sigma), rep(0, length(sombreado_inferior))),
 	   col = "lightblue", border = NA)
-shade_high <- seq(crit_high, mu + 4 * sigma, length.out = 250)
-polygon(c(shade_high, rev(shade_high)),
-	   c(dnorm(shade_high, mean = mu, sd = sigma), rep(0, length(shade_high))),
+sombreado_superior <- seq(critico_superior, mu + 4 * sigma, length.out = 250)
+polygon(c(sombreado_superior, rev(sombreado_superior)),
+	   c(dnorm(sombreado_superior, mean = mu, sd = sigma), rep(0, length(sombreado_superior))),
 	   col = "lightblue", border = NA)
 lines(x, y, lwd = 2)
 abline(v = mean(x2), col = "red", lwd = 2, lty = 2)
 dev.off()
 
-z2_value <- (mean(x2)-mu) / sigma
-2 * pnorm(-abs(z2_value))
+valor_z2 <- (mean(x2)-mu) / sigma
+2 * pnorm(-abs(valor_z2))
 
 # 6
 rm(list = ls()) # borrar todas las variables guardadas
@@ -101,23 +101,23 @@ x = c(7.80, 8.25, 12.60, 13.50, 15.96, 16.46, 31.29)
 y = c(13.57, 14.80, 22.36, 22.70, 29.29)
 
 set.seed(123) # Para reproducibilidad
-n_permutations <- 10000
-count <- 0
-perm_means <- numeric(n_permutations) # almacenar las medias de new_y para el grafico
-for (i in 1:n_permutations) {
-  permuted <- sample(c(x, y))
-  new_y <- permuted[1:length(y)]
-  perm_means[i] <- mean(new_y) # para el grafico 
-  if (mean(new_y) >= mean(y)) { # apuntamos esto para calcular el p-valor
-    count <- count + 1
+n_permutaciones <- 10000
+recuento <- 0
+medias_permutadas <- numeric(n_permutaciones) # almacenar las medias de nueva_y para el gráfico
+for (i in 1:n_permutaciones) {
+	permutados <- sample(c(x, y))
+	nueva_y <- permutados[1:length(y)]
+	medias_permutadas[i] <- mean(nueva_y) # para el gráfico
+	if (mean(nueva_y) >= mean(y)) { # apuntamos esto para calcular el valor p
+		recuento <- recuento + 1
   }
 }
 
-p_value_permutation <- count / 10000
-p_value_permutation
+pvalue_permutacion <- recuento / 10000
+pvalue_permutacion
 
 pdf("pr2_histpermutaciones.pdf", width = 8, height = 6)
-hist(perm_means, breaks = 20, main = "Histograma de medias de y'",
+hist(medias_permutadas, breaks = 20, main = "Histograma de medias de y'",
      xlab = "Media de y'", ylab = "Frecuencia")
 abline(v = mean(y), col = "red", lwd = 2, lty = 2)
 dev.off()
@@ -129,39 +129,39 @@ rm(list = ls()) #borrar todas las variables guardadas
 
 p_T <- 0.02
 n <- 2300
-successes <- 94
-p_hat <- successes / n
+exitos <- 94
+p_estimada <- exitos / n
 
 94/2300
-# H0: p_hat - p_T = 0; H1: p_hat - p_T > 0
+# H0: p_estimada - p_T = 0; H1: p_estimada - p_T > 0
 
-variance_hat <- p_T * (1 - p_T) / n
-se_hat <- sqrt(variance_hat)
-z_value <- (p_hat - p_T) / se_hat
-p_value <- pnorm(z_value, lower.tail = FALSE)
+varianza_estimada <- p_T * (1 - p_T) / n
+error_estandar <- sqrt(varianza_estimada)
+valor_z <- (p_estimada - p_T) / error_estandar
+pvalue <- pnorm(valor_z, lower.tail = FALSE)
 
-p_hat
-variance_hat
-z_value
-cat(sprintf("One-sided p-value: %.3e\n", p_value))
+p_estimada
+varianza_estimada
+valor_z
+cat(sprintf("Valor p unilateral: %.3e\n", pvalue))
 
-z_max <- max(4, ceiling(z_value) + 1)
-z_axis <- seq(-4, z_max, length.out = 1000)
-z_density <- dnorm(z_axis)
+z_max <- max(4, ceiling(valor_z) + 1)
+eje_z <- seq(-4, z_max, length.out = 1000)
+densidad_z <- dnorm(eje_z)
 
-pdf("pr2_normstddist1.pdf", width = 8, height = 6)
-plot(z_axis, z_density, type = "l", lwd = 2,
+pdf("pr2_distnormalestandar1.pdf", width = 8, height = 6)
+plot(eje_z, densidad_z, type = "l", lwd = 2,
 	main = "Normal estándard del estadístico",
 	xlab = "z", ylab = "Densidad")
 
-# Shade the upper-tail rejection region from the critical value.
-z_critical <- qnorm(0.95)
-shade_z <- seq(z_critical, z_max, length.out = 300)
-polygon(c(z_critical, shade_z, z_max),
-	c(0, dnorm(shade_z), 0),
+# Sombrear la región de rechazo de la cola superior desde el valor crítico.
+z_critico <- qnorm(0.95)
+sombreado_z <- seq(z_critico, z_max, length.out = 300)
+polygon(c(z_critico, sombreado_z, z_max),
+	c(0, dnorm(sombreado_z), 0),
 	col = "lightblue", border = NA)
-lines(z_axis, z_density, lwd = 2)
-abline(v = z_value, col = "red", lwd = 2, lty = 2)
+lines(eje_z, densidad_z, lwd = 2)
+abline(v = valor_z, col = "red", lwd = 2, lty = 2)
 dev.off()
 
 # 8
@@ -179,26 +179,26 @@ sd12 <- sqrt(v1 + v2)
 
 z12 <- (p2-p1)/ sqrt(v1 + v2)
 z12
-p_value12 <- pnorm(z12, lower.tail = FALSE)
-p_value12
+pvalue12 <- pnorm(z12, lower.tail = FALSE)
+pvalue12
 
-# Standard normal distribution for the one-sided test (H1: p2 > p1).
-z_axis <- seq(-4, 4, length.out = 1000)
-z_density <- dnorm(z_axis)
+# Distribución normal estándar para el contraste unilateral (H1: p2 > p1).
+eje_z <- seq(-4, 4, length.out = 1000)
+densidad_z <- dnorm(eje_z)
 
-pdf("pr2_normstddist2.pdf", width = 8, height = 6)
-plot(z_axis, z_density, type = "l", lwd = 2,
+pdf("pr2_distnormalestandar2.pdf", width = 8, height = 6)
+plot(eje_z, densidad_z, type = "l", lwd = 2,
 	main = "Normal estándard del estadístico",
 	xlab = "z", ylab = "Densidad")
 
-# Shade the upper-tail area corresponding to the p-value.
-alpha12 <- 0.05
-z_critical12 <- qnorm(1 - alpha12)
-shade_z <- seq(z_critical12, 4, length.out = 300)
-polygon(c(z_critical12, shade_z, 4),
-	c(0, dnorm(shade_z), 0),
+# Sombrear la región de rechazo de la cola superior.
+alfa12 <- 0.05
+z_critico12 <- qnorm(1 - alfa12)
+sombreado_z <- seq(z_critico12, 4, length.out = 300)
+polygon(c(z_critico12, sombreado_z, 4),
+	c(0, dnorm(sombreado_z), 0),
 	col = "lightblue", border = NA)
-lines(z_axis, z_density, lwd = 2)
+lines(eje_z, densidad_z, lwd = 2)
 abline(v = z12, col = "red", lwd = 2, lty = 2)
 
 dev.off()
