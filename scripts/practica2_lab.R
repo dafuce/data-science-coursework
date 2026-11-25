@@ -2,24 +2,19 @@
 # Oscar Moreno
 # Marc Torres
 
-install.packages("dplyr")
+#install.packages("dplyr")
 library(dplyr)
-# 1 Pipeline Operator |> or %>% 
+# 1 Pipeline Operator |> o %>% con library
 
-# a. Squared root of squared 
+# a. 
 
 square <- function(x)(x^2)
-
-5 |> square() |> sqrt()
 
 square_and_root <- . %>% square() %>% sqrt() # el . es una referencia a un valor numerico en este caso
 
 square_and_root(5)
 
 # b. 
-
-
-rnorm(n = 1000, mean = 5, sd = 3) |> scale() |> max()
 
 get_sample_scaled <- function() {
 	rnorm(n = 1000, mean = 5, sd = 3) %>% scale()
@@ -34,16 +29,14 @@ density_plot_and_max <- function(x) {
 	max(x)
 }
 
-rnorm(n = 1000, mean = 5, sd = 3) |> scale() |> as.numeric() |> (\(x) { plot(density(x), main = "Density of x"); max(x) })()
-
 get_sample_scaled() %>% as.numeric() %>% density_plot_and_max()
 
 # 2 pisos dataset
 
 # preparacion inicial
 
-install.packages("here")
-library(here)
+#install.packages("here")
+#library(here)
 #getwd()
 
 options(width = 400) # consola mas ancha para ver bien el summary
@@ -65,42 +58,27 @@ str(pisos)
 
 dim(pisos)
 
-pisos[!duplicated(pisos),] |> (\(x){dim(x)})()
-
-pisos[!duplicated(pisos),] |> (\(x){aggregate(Valor ~ Dist, data = x, FUN = mean)})()
-
 remove_duplicates <- function(df) {df[!duplicated(df),]}
+
 valor_mean_by_dist <- function(df) {aggregate(Valor ~ Dist, data = df, FUN = mean)}
 
 pisos %>% remove_duplicates() %>% valor_mean_by_dist()
+
+# distinct ya me hace lo mismo, para que voy crear una funcion yo, igual con el group by
+
+pisos %>% distinct(.) %>% valor_mean_by_dist()
 
 # b
 
 # str(pisos) # Valor, Superf, Dorm, Banys, Edat, ValSol ( Dorm i Banys como categorico?)
 
-pisos[!duplicated(pisos),] |> (\(x){x[, vapply(x, is.numeric, logical(1)), drop = FALSE]})()
-
-pisos[!duplicated(pisos),] |> (\(x){x[, vapply(x, is.numeric, logical(1)), drop = FALSE]})() |> (\(x){scale(x)})()
-
-keep_numerics <- function(df) {df[, vapply(df, is.numeric, logical(1)), drop = FALSE]}
+keep_numerics <- function(df) {df[, vapply(df, is.numeric, logical(1))]} # logical(1) indica que is.numeric debe devolver un true o false por columna.
 
 pisos %>% remove_duplicates() %>% keep_numerics() %>% scale()
 
 # c 
 
 # usamos una lista para poderle pasar el df y los aggregates al siguiente paso de la pipeline
-
-pisos[!duplicated(pisos),] |> (\(df) list(df = df,aggregates = aggregate(Valor ~ Dist, data = df, FUN = mean)))() 
-
-pisos[!duplicated(pisos),] |> (\(df) list(df = df,aggregates = aggregate(Valor ~ Dist, data = df, FUN = mean)))() |> (\(x) {
-	x$df$Greater_than_its_mean <- factor(
-		x$df$Valor >= x$aggregates$Valor[match(x$df$Dist, x$aggregates$Dist)],
-		levels = c(FALSE, TRUE), labels = c("N", "Y")
-	)
-	x$df
-})()
-
-# alternativa con función de dos parámetros
 
 add_greater_than_mean_col <- function(df, x) {
 	df$Greater_than_its_mean <- factor(
@@ -110,7 +88,13 @@ add_greater_than_mean_col <- function(df, x) {
 	df
 }
 
-pisos %>% remove_duplicates() %>% { add_greater_than_mean_col(., valor_mean_by_dist(.)) } # el . es referencia a pisos con remove duplicates
+pisos %>%
+	remove_duplicates() %>%
+	{ print(add_greater_than_mean_col(., valor_mean_by_dist(.))) } # %T% muestra el resultado, pero conserva el data frame original
+
+# version con un pipeline mas fancy
+
+pisos %>% distinct() %>% group_by(Dist) %>% mutate( `Greater than is mean` = factor( if_else(Valor > mean(Valor, na.rm=T), "Y", "N") ) )
 
 # 3
 
@@ -151,40 +135,30 @@ names(distinfosql) <- c(
 
 distinfosql
 
-# Alternative grouping with a pipeline and base R data-frame functions
-
-numericValues <- function(x) as.numeric(as.character(x)) # esto deberia ya estar en el tipo correcto en pisos?
-
-distStats <- function(df) {
-	dorm <- numericValues(df$Dorm)
-	edat <- numericValues(df$Edat)
-	valor <- numericValues(df$Valor)
-	superf <- numericValues(df$Superf)
-	data.frame(
-		DistrictName = unique(df$Dist),
-		`1Dorm` = sum(dorm == 1, na.rm = TRUE),
-		`2Dorm` = sum(dorm == 2, na.rm = TRUE),
-		`3Dorm` = sum(dorm == 3, na.rm = TRUE),
-		`4Dorm` = sum(dorm == 4, na.rm = TRUE),
-		`5Dorm` = sum(dorm == 5, na.rm = TRUE),
-		Valor = mean(valor, na.rm = TRUE),
-		AscS = sum(df$Ascens == "Sí", na.rm = TRUE),
-		AscN = sum(df$Ascens == "No", na.rm = TRUE),
-		Atics = sum(df$Planta == "Atic", na.rm = TRUE),
-		Planta = sum(df$Planta == "Planta", na.rm = TRUE),
-		Bajos = sum(df$Planta == "Bajos", na.rm = TRUE),
-		Nous = sum(edat <= 10, na.rm = TRUE),
-		SemiNou = sum(edat >= 11 & edat <= 20, na.rm = TRUE),
-		Vells = sum(edat >= 21 & edat < 50, na.rm = TRUE),
-		MoltVell = sum(edat >= 50, na.rm = TRUE),
-		Superf = mean(superf, na.rm = TRUE),
-		Obs = nrow(df),
-		check.names = FALSE
+# Alternativa con pipelines
+ 
+distinfo <- pisos  %>% distinct() %>%
+	group_by(DistrictName = Dist) %>%
+	summarise(
+		`1Dorm` = sum(as.numeric(as.character(Dorm)) == 1, na.rm = TRUE),
+		`2Dorm` = sum(as.numeric(as.character(Dorm)) == 2, na.rm = TRUE),
+		`3Dorm` = sum(as.numeric(as.character(Dorm)) == 3, na.rm = TRUE),
+		`4Dorm` = sum(as.numeric(as.character(Dorm)) == 4, na.rm = TRUE),
+		`5Dorm` = sum(as.numeric(as.character(Dorm)) == 5, na.rm = TRUE),
+		Valor = mean(as.numeric(as.character(Valor)), na.rm = TRUE),
+		AscS = sum(Ascens == "Sí", na.rm = TRUE),
+		AscN = sum(Ascens == "No", na.rm = TRUE),
+		Atics = sum(Planta == "Atic", na.rm = TRUE),
+		Planta = sum(Planta == "Planta", na.rm = TRUE),
+		Bajos = sum(Planta == "Bajos", na.rm = TRUE),
+		Nous = sum(as.numeric(as.character(Edat)) <= 10, na.rm = TRUE),
+		SemiNous = sum(as.numeric(as.character(Edat)) >= 11 & as.numeric(as.character(Edat)) <= 20, na.rm = TRUE),
+		Vells = sum(as.numeric(as.character(Edat)) >= 21 & as.numeric(as.character(Edat)) < 50, na.rm = TRUE),
+		MoltVells = sum(as.numeric(as.character(Edat)) >= 50, na.rm = TRUE),
+		Superf = mean(as.numeric(as.character(Superf)), na.rm = TRUE),
+		Obs = n(),
+		.groups = "drop"
 	)
-}
-
-distinfo <- split(pisos, pisos$Dist, drop = TRUE) %>% lapply(distStats) %>% { do.call(rbind, .) }
-rownames(distinfo) <- NULL # borrar los nombres de las filas y que ponga solo del 1 al 10
 
 distinfo
 distinfosql
@@ -196,7 +170,7 @@ stacked_prop <- function(df, columns) {
 	t(sweep(counts, 1, df$Obs, "/"))
 }
 
-old_par <- par(mfrow = c(1, 1), mar = c(6, 4, 3, 10) + 0.1)
+old_par <- par(mfrow = c(1, 1), mar = c(6, 4, 3, 10) + 0.1) # con huequito para la leyenda
 
 barplot(
 	distinfo %>% stacked_prop(c("1Dorm", "2Dorm", "3Dorm", "4Dorm", "5Dorm")),
@@ -246,7 +220,7 @@ barplot(
 	 args.legend = list(x = "topright", inset = c(-0.15, 0), xpd = NA, bty = "n")
 )
 
-# Valor and Superf have different units, so plot them in separate panels.
+# Valor and Superf en dos paneles separados
 precio_m2 <- with(distinfo, (Valor / 1e6) / Superf)
 par(mfrow = c(3, 1), mar = c(8, 5, 2, 1) + 0.1)
 
